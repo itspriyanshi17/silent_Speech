@@ -1,0 +1,173 @@
+﻿[0] [Normal] ôComputer Vision Lip Reading System Using 3D Convolutional Neural Networksö
+[2] [Normal] A PROJECT REPORT
+[4] [Normal] Submitted by
+[6] [Normal] PATEL PRIYANSHI [23BEIT30143]
+[7] [Normal] PATEL SHREYA [23BEIT30145]
+[9] [Normal] In fulfillment for the award of the degree
+[10] [Normal] of
+[11] [Normal] BACHELOR OF ENGINEERING
+[12] [Normal] in
+[13] [Normal] INFORMATION TECHNOLOGY
+[17] [Normal] LDRP Institute of Technology and Research, Gandhinagar
+[18] [Normal] Kadi Sarva Vishwavidyalaya
+[19] [Normal] April-2025-26
+[22] [Normal] LDRP INSTITUTE OF TECHNOLOGY AND RESEARCH
+[23] [Normal]  GANDHINAGAR 
+[25] [Normal] IT Department
+[28] [Normal] CERTIFICATE
+[29] [Normal] This is to certify that the Project Work entitled ôComputer Vision Lip Reading System Using 3D Convolutional Neural Networksö has been carried out by PATEL PRIYANSHI [23BEIT30143] under my guidance in fulfilment of the degree of Bachelor of Engineering in Information Technology Semester-6 of Kadi Sa
+[33] [Normal] Prof.Palak Parmar                				Dr.Mehul Barot
+[34] [Normal] Internal Guide				                        Head of the Department
+[35] [Normal] LDRP ITR 							LDRP ITR
+[38] [Normal] LDRP INSTITUTE OF TECHNOLOGY AND RESEARCH
+[39] [Normal]  GANDHINAGAR 
+[40] [Normal] IT Department
+[43] [Normal] CERTIFICATE
+[44] [Normal] This is to certify that the Project Work entitled ôComputer Vision Lip Reading System Using 3D Convolutional Neural Networksö has been carried out by PATEL SHREYA [23BEIT30145] under my guidance in fulfilment of the degree of Bachelor of Engineering in Information Technology Semester-6 of Kadi Sarva
+[47] [Normal] Prof.Palak Parmar                				Dr.Mehul Barot
+[48] [Normal] Internal Guide				                        Head of the Department
+[49] [Normal] LDRP ITR 							LDRP ITR
+[53] [Normal] Presentation-I for Project-I
+[60] [Normal] Presentation-II for Project-I
+[63] [Normal] ACKNOWLEDGEMENT
+[64] [Normal] We would like to express our sincere gratitude to all those who have supported us in the successful completion of the project "Computer Vision Lip Reading System Using 3D Convolutional Neural Networks".
+[65] [Normal] First and foremost, we extend our heartfelt thanks to our project guide PROF. Palak Parmar & Head of the department DR. Mehul Barot whose valuable guidance, encouragement, and constructive suggestions have been a constant source of inspiration throughout this work.
+[66] [Normal] We are also thankful to the IT Department, LDRP-ITR for providing us with the facilities and resources required to carry out this project.
+[67] [Normal] Our deep appreciation goes to our classmates, friends, and family for their continuous motivation and support during this journey.
+[68] [Normal] Finally, we acknowledge with gratitude all the researchers and developers whose contributions in the fields of Computer Vision, Deep Learning, Speech Recognition, and Facial Landmark Detection have provided us with insights and references to complete this project successfully.
+[69] [Normal] This project has been a great learning experience, and we are truly grateful for the opportunity to explore, design, and implement this Computer Vision Lip Reading System.
+[71] [Normal] PATEL PRIYANSHI [23BEIT30143]
+[72] [Normal] PATEL SHREYA [23BEIT30145] 
+[73] [Normal] ABSTRACT
+[74] [Normal] This project presents a Computer Vision-based Lip Reading System that leverages 3D Convolutional Neural Networks (3D CNNs) to recognize spoken words by analyzing lip movements captured through video. Unlike traditional speech recognition systems that rely on audio signals, this system operates entir
+[75] [Normal] The system is trained on a custom-built dataset consisting of approximately 700 video clips totaling around 3 GB of data, covering 13 predefined English words: "here", "is", "a", "demo", "can", "you", "read", "my", "lips", "cat", "dog", "hello", and "bye". The dataset was manually collected using a 
+[76] [Normal] The core model architecture is a 3D Convolutional Neural Network built using TensorFlow and Keras, featuring three Conv3D layers (with 8, 32, and 256 filters respectively), MaxPooling3D layers, L2 regularization, and multiple fully connected Dense layers with Dropout for regularization. The model wa
+[81] [Normal] TABLE OF CONTENTS
+[82] [Normal] LIST OF FIGURES
+[84] [Normal] LIST OF TABLES
+[86] [Heading 1] 1    INTRODUCTION
+[87] [Heading 2] 1.1  INTRODUCTION
+[88] [Heading 2] 1.2  AIMS AND OBJECTIVE OF THE WORK
+[89] [Heading 2] 1.3  BRIEF LITERATURE REVIEW
+[90] [Heading 2] 1.4  PROBLEM DEFINITION
+[91] [Heading 2] 1.5  PLAN OF THE WORK
+[93] [Heading 2] 1.1. Introduction
+[94] [Normal] Lip reading, also known as visual speech recognition (VSR), is the process of interpreting spoken language by visually analyzing the movements of the lips, face, and tongue. It is a skill naturally employed by hearing-impaired individuals and has gained significant research attention in the fields o
+[95] [Normal] The system operates entirely on visual inputùno audio signal is required. A webcam captures the user's face in real-time, and the dlib facial landmark detector identifies 68 key facial points, from which the lip region (landmarks 48-61) is extracted. The system monitors the distance between the uppe
+[96] [Normal] These 22-frame sequences form the input to a 3D Convolutional Neural Network that has been trained to classify lip movement patterns into one of 13 predefined English words: "here", "is", "a", "demo", "can", "you", "read", "my", "lips", "cat", "dog", "hello", and "bye". The 3D CNN architecture is sp
+[97] [Normal] The model was trained on a custom-built dataset of approximately 700 video clips (~3 GB of data), collected manually using a purpose-built data collection script. The training process achieved a 95.7% training accuracy and 98.5% validation accuracy, demonstrating strong classification performance. T
+[98] [Normal] By leveraging advances in facial landmark detection, image preprocessing, and 3D convolutional neural networks, this project demonstrates that visual-only lip reading is a viable and accurate approach for word-level speech recognition, with applications in assistive technology for the hearing impair
+[100] [Heading 2] 1.2. Aims and Objective of the Work
+[101] [Heading 3] 1.2.1. Aims of "Computer Vision Lip Reading System"
+[102] [Normal] The Computer Vision Lip Reading System is designed to recognize spoken words from visual lip movement patterns using deep learning. Based on the project's design and implementation, its primary aims are:
+[103] [List Bullet] Visual Speech Recognition: To develop a system that can accurately recognize spoken words solely from visual analysis of lip movements, without requiring any audio input.
+[104] [List Bullet] Automated Lip Detection & Frame Capture: To build an intelligent pipeline that automatically detects when a person is speaking by analyzing facial landmark distances, captures the relevant lip-region frames, and preprocesses them for classification.
+[105] [List Bullet] Deep Learning Classification: To train a 3D Convolutional Neural Network capable of learning spatiotemporal features from lip movement sequences and classifying them into 13 predefined word categories with high accuracy.
+[106] [List Bullet] Real-Time Inference: To enable real-time word prediction from a live webcam feed, providing immediate visual feedback of the recognized word on screen.
+[107] [Normal] In short, the project aims to demonstrate that computer vision and deep learning can be combined to build a practical, visual-only lip reading system that works in real-time.
+[108] [Heading 3] 1.2.2. Objectives of "Computer Vision Lip Reading System"
+[109] [Normal] The specific technical objectives of this project are:
+[110] [List Bullet] Implement Facial Landmark Detection: Utilize dlib's pre-trained shape predictor (face_weights.dat) with 68 facial landmarks to detect faces and extract the lip region (landmarks 48-61) from each video frame with sub-pixel accuracy.
+[111] [List Bullet] Build a Custom Dataset: Design and implement a data collection pipeline (collect.py) that uses lip-distance thresholds to detect speech onset/offset, captures exactly 22 frames per word (including pre-speech buffer frames), and saves them as structured data for training.
+[112] [List Bullet] Develop Image Preprocessing Pipeline: Implement a robust preprocessing chain including LAB color space conversion, CLAHE (Contrast Limited Adaptive Histogram Equalization) for contrast enhancement, Gaussian blurring, bilateral filtering, and sharpening to normalize lip appearance across varying ligh
+[113] [List Bullet] Design and Train a 3D CNN Model: Architect and train a Sequential model with three Conv3D layers (8, 32, 256 filters), MaxPooling3D layers, L2 regularization (0.001), Dense layers (1024, 256, 64), Dropout (0.5), and softmax output for 13-class classification, achieving >95% validation accuracy.
+[114] [List Bullet] Implement Live Prediction System: Build a real-time prediction script (predict_live.py) that captures webcam frames, detects speech activity, accumulates 22 preprocessed lip frames, feeds them through the trained model, and displays the predicted word on screen.
+[115] [List Bullet] Implement File-Based Prediction: Build a video file prediction script (predict_file.py) that processes pre-recorded videos frame-by-frame using the same pipeline and saves annotated output videos with predicted word overlays.
+[117] [Heading 2] 1.3. Brief Literature Review
+[118] [Normal] The development of this Lip Reading System is grounded in existing research and innovations across the fields of visual speech recognition, deep learning for video analysis, and facial landmark detection.
+[119] [Heading 3] 1.3.1. Visual Speech Recognition
+[120] [Normal] Visual speech recognition (VSR), also known as automatic lip reading, has been an active area of research since the 1980s. Early systems relied on hand-crafted features such as lip contour shapes and optical flow vectors. Potamianos et al. (2003) provided a comprehensive survey of audio-visual speec
+[121] [Heading 3] 1.3.2. Deep Learning for Lip Reading
+[122] [Normal] The breakthrough application of deep learning to lip reading came with the LipNet model (Assael et al., 2016), which achieved 95.2% accuracy on the GRID corpus using an end-to-end deep learning architecture combining Spatiotemporal CNNs, GRUs, and CTC loss. This was followed by "Lip Reading Sentence
+[123] [Heading 3] 1.3.3. Facial Landmark Detection
+[124] [Normal] The dlib library's facial landmark detector, based on the work of Kazemi and Sullivan (2014) "One Millisecond Face Alignment with an Ensemble of Regression Trees," provides real-time detection of 68 facial landmarks with high accuracy. This detector is widely used in face recognition, emotion detect
+[126] [Heading 2] 1.4. Problem Definition
+[127] [Normal] The current landscape of speech recognition and accessibility technology faces several critical challenges that this project seeks to address:
+[128] [List Bullet] Audio Dependency of Speech Recognition: Mainstream speech recognition systems (Google Speech-to-Text, Apple Siri, Amazon Alexa) rely entirely on audio input. They fail in noisy environments (factories, concerts, busy streets), underwater, behind glass barriers, or when the speaker is muted. There is
+[129] [List Bullet] Limited Accessibility for Hearing-Impaired: While sign language recognition has received research attention, automated lip readingùwhich would allow hearing-impaired individuals to understand speakers who do not know sign languageùremains an underexplored application area with no mainstream consumer
+[130] [List Bullet] Dataset Scarcity for Word-Level Lip Reading: Most existing lip reading datasets (GRID, LRW, LRS) are designed for sentence-level or phoneme-level recognition, often with controlled lighting and studio conditions. There is a scarcity of simple, word-level datasets suitable for training lightweight mo
+[131] [List Bullet] Real-Time Processing Challenge: Performing facial landmark detection, lip region extraction, image preprocessing, and deep learning inference in real-time from a webcam feed presents computational challenges. The pipeline must be efficient enough to process frames at video rate (15-30 FPS) while mai
+[133] [Heading 2] 1.5. Plan of the Work
+[134] [Normal] To ensure the successful development of the Computer Vision Lip Reading System, the project work is divided into the following strategic phases:
+[135] [Normal] Phase 1: Requirement Analysis & Feasibility
+[136] [List Bullet] Reviewing literature on visual speech recognition, 3D CNNs, and facial landmark detection.
+[137] [List Bullet] Defining the vocabulary: 13 common English words.
+[138] [List Bullet] Determining the technical stack: Python, TensorFlow/Keras, OpenCV, dlib, NumPy.
+[139] [List Bullet] Evaluating feasibility of real-time lip reading on consumer hardware.
+[140] [Normal] Phase 2: Data Collection & Dataset Creation
+[142] [List Bullet] Designing the data collection pipeline with automatic speech detection via lip-distance thresholds.
+[143] [List Bullet] Implementing collect.py with calibration mode, circular frame buffers, and standardized 22-frame output.
+[144] [List Bullet] Collecting ~700 video clips across 13 word classes using webcam recordings.
+[145] [List Bullet] Organizing data into labeled folders with text files (numpy arrays) and MP4 video files.
+[146] [Normal] Phase 3: Model Design & Training
+[147] [List Bullet] Designing the 3D CNN architecture with Conv3D, MaxPooling3D, Dense, and Dropout layers.
+[148] [List Bullet] Implementing data loading, label encoding, and train/test split (80/20).
+[149] [List Bullet] Training the model for 20 epochs with Adam optimizer and categorical cross-entropy loss.
+[150] [List Bullet] Evaluating with confusion matrix, classification report, ROC-AUC curves, and balanced accuracy.
+[151] [Normal] Phase 4: Inference System Development
+[152] [List Bullet] Building predict_live.py for real-time webcam-based word prediction.
+[153] [List Bullet] Building predict_file.py for batch inference on pre-recorded video files.
+[154] [List Bullet] Implementing the same preprocessing pipeline used during training for inference consistency.
+[155] [Normal] Phase 5: Testing & Validation
+[156] [List Bullet] Testing with various speakers, lighting conditions, and camera angles.
+[157] [List Bullet] Validating model accuracy against the test set (98.5% validation accuracy achieved).
+[158] [List Bullet] Recording demonstration videos to showcase system capabilities.
+[160] [Heading 1] 2    TECHNOLOGY AND LITERATURE REVIEW
+[161] [Heading 2] 2.1  TECHNOLOGIES
+[162] [Heading 2] 2.2  LITERATURE REVIEW
+[164] [Heading 2] 2.1. Technologies
+[165] [Heading 3] 2.1.1. Programming Language & Runtime
+[166] [Normal] Python 3 (v3.11/3.12): The primary programming language for the entire project. Python is the de facto standard for machine learning and computer vision projects due to its extensive ecosystem of scientific computing libraries, readable syntax, and strong community support. All data collection, prep
+[167] [Heading 3] 2.1.2. Deep Learning Framework
+[168] [Normal] TensorFlow (v2.12.0): Google's open-source machine learning framework used as the backend for building, training, and running the 3D CNN model. TensorFlow provides GPU acceleration, automatic differentiation, and production-ready model serving capabilities.
+[169] [Normal] Keras (v2.12.0): The high-level neural network API running on top of TensorFlow. Keras provides the Sequential model API, layer primitives (Conv3D, MaxPooling3D, Dense, Dropout, Flatten), optimizers (Adam), loss functions (categorical_crossentropy), and training utilities (model.fit, model.predict) 
+[170] [List Bullet] Conv3D: 3D convolutional layers that apply filters across both spatial (height, width) and temporal (frame sequence) dimensions, enabling the model to learn spatiotemporal features from video sequences.
+[171] [List Bullet] MaxPooling3D: Downsampling layers that reduce spatial and temporal dimensions, decreasing computational cost while retaining the most important features.
+[172] [List Bullet] Dense: Fully connected layers for classification. The final Dense layer uses softmax activation to output probability distributions across the 13 word classes.
+python : Traceback (most recent call last):
+At line:1 char:1
++ python -c "
++ ~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], Rem 
+   oteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<string>", line 8, in <module>
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 98: character 
+maps to <undefined>
+[173] [List Bullet] Dropout: Regularization layers (rate=0.5) that randomly zero out neurons during training to prevent overfitting.
+[174] [List Bullet] L2 Regularization (kernel_regularizer): Applied to Conv3D layers with a factor of 0.001 to penalize large weights and improve generalization.
+[175] [Heading 3] 2.1.3. Computer Vision Libraries
+[176] [Normal] OpenCV (v4.6.0.66): The primary computer vision library used for webcam capture (VideoCapture), image color space conversion (BGR to Grayscale, BGR to LAB), image preprocessing (CLAHE, GaussianBlur, bilateralFilter, filter2D for sharpening), image resizing, drawing annotations (circles on landmarks,
+[177] [Normal] dlib (v19.24.1): A C++ toolkit with Python bindings used for two critical functions:
+[178] [List Bullet] Face Detection: dlib.get_frontal_face_detector() ù a HOG+SVM-based frontal face detector that identifies face bounding boxes in grayscale images.
+[179] [List Bullet] Facial Landmark Prediction: dlib.shape_predictor() with the pre-trained "shape_predictor_68_face_landmarks" model (face_weights.dat) ù predicts 68 facial landmark coordinates, from which lip landmarks (48-61) are extracted for lip region cropping.
+[180] [Normal] Pillow (PIL) (v9.4.0): Python Imaging Library used for creating RGB images from numpy pixel arrays during the data saving process in the collection pipeline.
+[181] [Heading 3] 2.1.4. Data Processing & Utilities
+[182] [Normal] NumPy (v1.23.5): The fundamental numerical computing library used for array operations throughout the project ù storing frame sequences as 4D arrays (frames ╫ height ╫ width ╫ channels), preprocessing kernels (sharpening filter), and model input/output processing.
+[183] [Normal] scikit-learn: Used for data splitting (train_test_split with 80/20 ratio), label encoding (LabelEncoder), evaluation metrics (classification_report, balanced_accuracy_score, confusion_matrix, roc_curve, auc), and label binarization for ROC analysis.
+[184] [Normal] imageio (v2.27.0): Used for reading image files and writing MP4 video files from frame sequences during the data collection process (imageio.mimsave).
+[185] [Normal] matplotlib: Used in the training notebook for plotting training/validation accuracy and loss curves, class distribution histograms, and ROC-AUC curves.
+[186] [Normal] seaborn: Used for generating the confusion matrix heatmap visualization in the training notebook.
+[188] [Heading 2] 2.2. Literature Review
+[189] [Heading 3] 2.2.1. Contextual Background
+[190] [Normal] The Communication Barrier for the Hearing Impaired: The World Health Organization (WHO) reports that over 430 million people worldwide suffer from disabling hearing loss, a number projected to rise to 700 million by 2050. While hearing aids and cochlear implants address some cases, many individuals 
+[191] [Normal] The Rise of Deep Learning in Visual Recognition: The deep learning revolution, beginning with AlexNet (Krizhevsky et al., 2012) winning ImageNet, has transformed computer vision. Convolutional Neural Networks (CNNs) have become the standard for image classification, and their extension to video anal
+[192] [Normal] Audio-Visual Speech Recognition: The McGurk Effect (McGurk & MacDonald, 1976) demonstrated that visual information from lip movements significantly influences speech perception. This finding has driven decades of research into audio-visual speech recognition (AVSR), where visual lip information is f
+[193] [Heading 3] 2.2.2. Existing Solutions & Market Analysis
+[194] [Normal] LipNet (Assael et al., 2016): The first end-to-end deep learning model for sentence-level lip reading, achieving 95.2% accuracy on the GRID corpus. LipNet uses Spatiotemporal CNNs + GRUs + CTC loss, but requires large-scale labeled video datasets and significant computational resources.
+[195] [Normal] DeepMind's Visual Speech Recognition (Chung et al., 2017): "Lip Reading Sentences in the Wild" demonstrated performance surpassing professional human lip readers on the LRS dataset. However, the system requires massive training data (100,000+ utterances) and is designed for sentence-level recognitio
+[196] [Normal] Google Speech-to-Text, Apple Siri, Amazon Alexa: These mainstream speech recognition systems operate entirely on audio input and cannot function in visually-observed-only scenarios. They offer no lip reading capability.
+[197] [Normal] Commercial Lip Reading Systems: Companies such as Liopa (UK) have developed lip reading technology for healthcare settings, but these are proprietary, expensive, and designed for specific clinical use cases rather than general-purpose word recognition.
+[199] [Heading 2] 2.3. Problem Statement & Gaps
+[200] [Normal] Accessibility Gap: Despite 430 million people with hearing loss, no mainstream consumer application provides real-time visual lip reading to assist communication. Current assistive technology focuses on hearing aids and sign language translation, leaving lip reading automation as an unmet need.
+[201] [Normal] Complexity Gap: Existing deep learning lip reading systems (LipNet, DeepMind) require massive datasets, sentence-level architectures, and significant computational resources. There is a gap for lightweight, word-level models that can run in real-time on standard consumer hardware with custom-built, 
+[202] [Normal] Dataset Gap: Most lip reading datasets (GRID, LRW, LRS) feature controlled studio conditions and are designed for sentence or phoneme-level recognition. There is a scarcity of word-level datasets collected under natural webcam conditions suitable for training lightweight models.
+[203] [Normal] Audio-Free Gap: The vast majority of speech recognition systems require audio input. A purely visual system that operates without any microphone is needed for scenarios such as: communication through glass barriers, surveillance footage analysis, space environments, and any context where audio recor
+[204] [Heading 2] 2.4. The Role of Deep Learning Intervention (The Project's Contribution)
+[205] [Normal] From Audio to Visual: This project shifts speech recognition from audio-dependent to purely visual, demonstrating that a well-designed 3D CNN trained on lip movement sequences can achieve high accuracy (98.5% validation) for word-level classification without any audio signal.
+[206] [Normal] Custom Dataset Creation: The project contributes a novel word-level lip reading dataset of ~700 video clips across 13 words, collected under natural webcam conditions with an automated collection pipeline. This dataset and methodology can be replicated and extended by other researchers.
+[207] [Normal] Lightweight Real-Time Architecture: Unlike heavyweight sentence-level models, this project demonstrates that a relatively simple 3D CNN architecture (3 Conv3D layers + Dense layers) can achieve excellent word-level classification performance while being light enough for real-time webcam inference.

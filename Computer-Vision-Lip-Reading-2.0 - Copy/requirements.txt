@@ -1,0 +1,13 @@
+# Auto-AVSR Lip Reading App Dependencies
+torch
+torchvision
+torchaudio
+mediapipe
+opencv-python
+flask
+scipy
+scikit-image
+av
+six
+sentencepiece
+numpy

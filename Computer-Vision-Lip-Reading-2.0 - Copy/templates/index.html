@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Lip Reading — Auto-AVSR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <span class="pulse-dot"></span>
+                <h1>Lip Reading AI</h1>
+            </div>
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="mode-live" data-mode="live">
+                    <span>📹</span> Live Camera
+                </button>
+                <button class="mode-btn" id="mode-sample" data-mode="sample">
+                    <span>🎬</span> Sample Videos
+                </button>
+            </div>
+            <div class="status-badge" id="recording-status">
+                <span class="icon">⚪</span>
+                <span class="text">Ready</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="grid-layout">
+            
+            <!-- Left Column: Vision & Feeds -->
+            <section class="vision-panel">
+
+                <!-- LIVE MODE PANEL -->
+                <div id="live-panel">
+                    <div class="panel-header">
+                        <h2>Live Camera Feed</h2>
+                        <span class="subtitle">MediaPipe face mesh & lip detection</span>
+                    </div>
+                    
+                    <div class="video-container main-video">
+                        <img src="/video_feed" id="live-video" alt="Live webcam feed">
+                    </div>
+
+                    <div class="secondary-feeds">
+                        <div class="feed-box">
+                            <div class="panel-header small">
+                                <h3>Lip ROI Extraction</h3>
+                                <span class="subtitle">160×120 • MediaPipe mesh</span>
+                            </div>
+                            <div class="video-container small-video">
+                                <img src="/lip_feed" id="lip-video" alt="Cropped lip feed">
+                            </div>
+                        </div>
+                        <div class="feed-box model-info-box">
+                            <div class="panel-header small">
+                                <h3>Model Info</h3>
+                                <span class="subtitle">Auto-AVSR • Conformer</span>
+                            </div>
+                            <div class="model-info">
+                                <div class="info-row">
+                                    <span class="info-label">Architecture</span>
+                                    <span class="info-value">ResNet-18 + Conformer</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Training Data</span>
+                                    <span class="info-value">LRS3 (400+ hrs)</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Benchmark</span>
+                                    <span class="info-value accent">19.1% WER (SOTA)</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Vocabulary</span>
+                                    <span class="info-value">Open (any English)</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Decoding</span>
+                                    <span class="info-value">CTC + Attention + LM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAMPLE MODE PANEL -->
+                <div id="sample-panel" style="display: none;">
+                    <div class="panel-header">
+                        <h2>Sample Videos</h2>
+                        <span class="subtitle">Pre-recorded clips matching LRS3 training data domain</span>
+                    </div>
+
+                    <!-- Video Preview -->
+                    <div class="video-container main-video sample-video-container">
+                        <video id="sample-video-player" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                        <div class="sample-video-placeholder" id="sample-placeholder">
+                            <span class="placeholder-icon">🎬</span>
+                            <span>Select a sample video or upload your own</span>
+                        </div>
+                    </div>
+
+                    <!-- Clip Selector -->
+                    <div class="sample-clip-grid" id="sample-clip-grid">
+                        <div class="sample-loading">Loading sample clips...</div>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <label class="upload-btn" for="video-upload">
+                            <span>📁</span> Upload Your Own Video
+                        </label>
+                        <input type="file" id="video-upload" accept="video/*" style="display:none;">
+                        <span class="upload-hint">Supported: .mp4, .avi, .mov, .mkv, .webm</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Controls & Output -->
+            <section class="inference-panel">
+                
+                <!-- Recording Control (Live mode) -->
+                <div class="record-control-box" id="live-controls">
+                    <button id="record-btn" class="record-btn">
+                        <span class="record-btn-icon">🎙️</span>
+                        <span class="record-btn-text">Start Recording</span>
+                    </button>
+                    <div class="record-timer" id="record-timer">
+                        <span id="timer-display">0.0s</span>
+                        <span id="frame-count">0 frames</span>
+                    </div>
+                    <p class="record-hint">Click to start, speak clearly, then click again to stop & predict.</p>
+                </div>
+
+                <!-- Sample Inference Control (Sample mode) -->
+                <div class="record-control-box" id="sample-controls" style="display: none;">
+                    <button id="sample-infer-btn" class="record-btn sample-infer-btn" disabled>
+                        <span class="record-btn-icon">🧠</span>
+                        <span class="record-btn-text">Run Inference</span>
+                    </button>
+                    <p class="record-hint" id="sample-selected-name">No video selected</p>
+                </div>
+
+                <!-- Main Prediction -->
+                <div class="prediction-box">
+                    <div class="panel-header">
+                        <h2>Prediction</h2>
+                    </div>
+                    <div class="prediction-display">
+                        <div class="word" id="current-word">...</div>
+                        <div class="confidence" id="current-confidence">Waiting for speech</div>
+                    </div>
+                </div>
+
+                <!-- Processing indicator -->
+                <div class="processing-box" id="processing-box" style="display: none;">
+                    <div class="spinner"></div>
+                    <span>Running Auto-AVSR inference...</span>
+                </div>
+
+                <!-- Transcript -->
+                <div class="transcript-box">
+                    <div class="panel-header">
+                        <h2>Transcript</h2>
+                        <button id="clear-btn" class="btn-clear">Clear</button>
+                    </div>
+                    <div class="transcript-content" id="transcript">
+                        <span class="placeholder">Press Start, speak clearly while facing the camera, then press Stop. Predictions appear here.</span>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

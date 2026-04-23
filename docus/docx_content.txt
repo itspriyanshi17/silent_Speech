@@ -1,0 +1,369 @@
+﻿[0] [Heading 1] 1    INTRODUCTION
+[1] [Heading 2] 1.1  INTRODUCTION
+[2] [Heading 2] 1.2  AIMS AND OBJECTIVE OF THE WORK
+[3] [Heading 2] 1.3  BRIEF LITERATURE REVIEW
+[4] [Heading 2] 1.4  PROBLEM DEFINITION
+[5] [Heading 2] 1.5  PLAN OF THE WORK
+[6] [Normal] 
+[7] [Heading 2] 1.1. Introduction
+[8] [Normal] Lip reading, also known as visual speech recognition (VSR), is the process of interpreting spoken language by visually analyzing the movements of the lips, face, and tongue. It is a skill naturally employed by hearing-impaired individuals and has gained significant research attention in the fields of computer vision and artificial intelligence. This project presents a Computer Vision Lip Reading System that uses 3D Convolutional Neural Networks (3D CNNs) to automatically recognize spoken words from video sequences of lip movements.
+[9] [Normal] The system operates entirely on visual inputΓÇöno audio signal is required. A webcam captures the user's face in real-time, and a pre-trained facial landmark detector identifies 68 key facial points, from which the lip region is extracted. The system monitors the distance between the upper and lower lip landmarks to detect when the user is speaking. When speech is detected, the system captures a sequence of 22 consecutive lip-region frames, each preprocessed to a standardized 80├ù112 pixel RGB image with contrast enhancement and noise reduction.
+[10] [Normal] These 22-frame sequences form the input to a 3D Convolutional Neural Network that has been trained to classify lip movement patterns into one of 13 predefined English words: "here", "is", "a", "demo", "can", "you", "read", "my", "lips", "cat", "dog", "hello", and "bye". The 3D CNN architecture is specifically chosen because it can capture both spatial features (the shape and position of the lips in each frame) and temporal features (how the lip shape changes across the sequence of frames), making it ideal for video-based classification tasks.
+[11] [Normal] The model was trained on a custom-built dataset of approximately 700 video clips (~3 GB of data), collected manually using a purpose-built data collection module. The training process achieved a 95.7% training accuracy and 98.5% validation accuracy, demonstrating strong classification performance. The system includes both a live prediction mode (real-time webcam inference) and a file-based prediction mode (inference on pre-recorded videos), making it versatile for both interactive and batch processing scenarios.
+[12] [Normal] By leveraging advances in facial landmark detection, image preprocessing, and 3D convolutional neural networks, this project demonstrates that visual-only lip reading is a viable and accurate approach for word-level speech recognition, with applications in assistive technology for the hearing impaired, security and surveillance systems, noisy environment communication, and human-computer interaction research.
+[13] [Normal] 
+[14] [Heading 2] 1.2. Aims and Objective of the Work
+[15] [Heading 3] 1.2.1. Aims of "Computer Vision Lip Reading System"
+[16] [Normal] The Computer Vision Lip Reading System is designed to recognize spoken words from visual lip movement patterns using deep learning. Based on the project's design and implementation, its primary aims are:
+[17] [List Bullet] Visual Speech Recognition: To develop a system that can accurately recognize spoken words solely from visual analysis of lip movements, without requiring any audio input.
+[18] [List Bullet] Automated Lip Detection & Frame Capture: To build an intelligent pipeline that automatically detects when a person is speaking by analyzing facial landmark distances, captures the relevant lip-region frames, and preprocesses them for classification.
+[19] [List Bullet] Deep Learning Classification: To train a 3D Convolutional Neural Network capable of learning spatiotemporal features from lip movement sequences and classifying them into 13 predefined word categories with high accuracy.
+[20] [List Bullet] Real-Time Inference: To enable real-time word prediction from a live webcam feed, providing immediate visual feedback of the recognized word on screen.
+[21] [Normal] In short, the project aims to demonstrate that computer vision and deep learning can be combined to build a practical, visual-only lip reading system that works in real-time.
+[22] [Heading 3] 1.2.2. Objectives of "Computer Vision Lip Reading System"
+[23] [Normal] The specific technical objectives of this project are:
+[24] [List Bullet] Implement Facial Landmark Detection: Utilize a pre-trained shape predictor with 68 facial landmarks to detect faces and extract the lip region from each video frame with sub-pixel accuracy.
+[25] [List Bullet] Build a Custom Dataset: Design and implement a data collection pipeline that uses lip-distance thresholds to detect speech onset/offset, captures exactly 22 frames per word (including pre-speech buffer frames), and saves them as structured data for training.
+[26] [List Bullet] Develop Image Preprocessing Pipeline: Implement a robust preprocessing chain including LAB color space conversion, CLAHE (Contrast Limited Adaptive Histogram Equalization) for contrast enhancement, Gaussian blurring, bilateral filtering, and sharpening to normalize lip appearance across varying lighting conditions.
+[27] [List Bullet] Design and Train a 3D CNN Model: Architect and train a sequential deep learning model with three 3D convolutional layers (8, 32, 256 filters), 3D max-pooling layers, L2 regularization, fully connected layers, dropout regularization, and softmax output for 13-class classification, achieving >95% validation accuracy.
+[28] [List Bullet] Implement Live Prediction System: Build a real-time prediction module that captures webcam frames, detects speech activity, accumulates 22 preprocessed lip frames, feeds them through the trained model, and displays the predicted word on screen.
+[29] [List Bullet] Implement File-Based Prediction: Build a video file prediction module that processes pre-recorded videos frame-by-frame using the same pipeline and saves annotated output videos with predicted word overlays.
+[30] [Normal] 
+[31] [Heading 2] 1.3. Brief Literature Review
+[32] [Normal] The development of this Lip Reading System is grounded in existing research and innovations across the fields of visual speech recognition, deep learning for video analysis, and facial landmark detection.
+[33] [Heading 3] 1.3.1. Visual Speech Recognition
+[34] [Normal] Visual speech recognition (VSR), also known as automatic lip reading, has been an active area of research since the 1980s. Early systems relied on hand-crafted features such as lip contour shapes and optical flow vectors. Potamianos et al. (2003) provided a comprehensive survey of audio-visual speech recognition, establishing that visual information from lip movements can significantly improve speech recognition accuracy, especially in noisy environments. The GRID corpus (Cooke et al., 2006) became a standard benchmark dataset, containing 34,000 short video clips of 34 speakers, enabling systematic evaluation of VSR systems.
+[35] [Heading 3] 1.3.2. Deep Learning for Lip Reading
+[36] [Normal] The breakthrough application of deep learning to lip reading came with the LipNet model (Assael et al., 2016), which achieved 95.2% accuracy on the GRID corpus using an end-to-end deep learning architecture combining Spatiotemporal CNNs, GRUs, and CTC loss. This was followed by "Lip Reading Sentences in the Wild" (Chung et al., 2017) from DeepMind, which demonstrated that deep learning models could surpass professional human lip readers. The use of 3D Convolutional Neural Networks (3D CNNs) for video analysis was pioneered by Tran et al. (2015) with the C3D model, which showed that 3D convolutions can effectively learn spatiotemporal features from video sequencesΓÇöthe same architectural principle employed in this project.
+[37] [Heading 3] 1.3.3. Facial Landmark Detection
+[38] [Normal] The facial landmark detector used in this project, based on the work of Kazemi and Sullivan (2014) "One Millisecond Face Alignment with an Ensemble of Regression Trees," provides real-time detection of 68 facial landmarks with high accuracy. This detector is widely used in face recognition, emotion detection, and lip reading applications. The 68-landmark model identifies key points around the jaw, eyebrows, nose, eyes, and mouthΓÇöwith the mouth-region landmarks specifically representing the outer and inner lip contours, which are critical for extracting the lip region of interest (ROI) used in this project.
+[39] [Normal] 
+[40] [Heading 2] 1.4. Problem Definition
+[41] [Normal] The current landscape of speech recognition and accessibility technology faces several critical challenges that this project seeks to address:
+[42] [List Bullet] Audio Dependency of Speech Recognition: Mainstream speech recognition systems (Google Speech-to-Text, Apple Siri, Amazon Alexa) rely entirely on audio input. They fail in noisy environments (factories, concerts, busy streets), underwater, behind glass barriers, or when the speaker is muted. There is no widely available consumer system that can recognize speech from visual input alone.
+[43] [List Bullet] Limited Accessibility for Hearing-Impaired: While sign language recognition has received research attention, automated lip readingΓÇöwhich would allow hearing-impaired individuals to understand speakers who do not know sign languageΓÇöremains an underexplored application area with no mainstream consumer solution.
+[44] [List Bullet] Dataset Scarcity for Word-Level Lip Reading: Most existing lip reading datasets (GRID, LRW, LRS) are designed for sentence-level or phoneme-level recognition, often with controlled lighting and studio conditions. There is a scarcity of simple, word-level datasets suitable for training lightweight models that can run in real-time on consumer hardware.
+[45] [List Bullet] Real-Time Processing Challenge: Performing facial landmark detection, lip region extraction, image preprocessing, and deep learning inference in real-time from a webcam feed presents computational challenges. The pipeline must be efficient enough to process frames at video rate (15-30 FPS) while maintaining classification accuracy.
+[46] [Normal] 
+[47] [Heading 2] 1.5. Plan of the Work
+[48] [Normal] To ensure the successful development of the Computer Vision Lip Reading System, the project work is divided into the following strategic phases:
+[49] [Normal] Phase 1: Requirement Analysis & Feasibility
+[50] [List Bullet] Reviewing literature on visual speech recognition, 3D CNNs, and facial landmark detection.
+[51] [List Bullet] Defining the vocabulary: 13 common English words.
+[52] [List Bullet] Determining the technical stack: Python, TensorFlow/Keras, OpenCV, dlib, NumPy.
+[53] [List Bullet] Evaluating feasibility of real-time lip reading on consumer hardware.
+[54] [Normal] Phase 2: Data Collection & Dataset Creation
+[55] [List Bullet] Designing the data collection pipeline with automatic speech detection via lip-distance thresholds.
+[56] [List Bullet] Implementing the data collection module with calibration mode, circular frame buffers, and standardized 22-frame output.
+[57] [List Bullet] Collecting ~700 video clips across 13 word classes using webcam recordings.
+[58] [List Bullet] Organizing data into labeled folders with structured array files and video files.
+[59] [Normal] Phase 3: Model Design & Training
+[60] [List Bullet] Designing the 3D CNN architecture with 3D convolutional, max-pooling, fully connected, and dropout layers.
+[61] [List Bullet] Implementing data loading, label encoding, and train/test split (80/20).
+[62] [List Bullet] Training the model for 20 epochs with Adam optimizer and categorical cross-entropy loss.
+[63] [List Bullet] Evaluating with confusion matrix, classification report, ROC-AUC curves, and balanced accuracy.
+[64] [Normal] Phase 4: Inference System Development
+[65] [List Bullet] Building the real-time prediction module for webcam-based word prediction.
+[66] [List Bullet] Building the file-based prediction module for batch inference on pre-recorded video files.
+[67] [List Bullet] Implementing the same preprocessing pipeline used during training for inference consistency.
+[68] [Normal] Phase 5: Testing & Validation
+[69] [List Bullet] Testing with various speakers, lighting conditions, and camera angles.
+[70] [List Bullet] Validating model accuracy against the test set (98.5% validation accuracy achieved).
+[71] [List Bullet] Recording demonstration videos to showcase system capabilities.
+[72] [Normal] 
+[73] [Heading 1] 2    TECHNOLOGY AND LITERATURE REVIEW
+[74] [Heading 2] 2.1  TECHNOLOGIES
+[75] [Heading 2] 2.2  LITERATURE REVIEW
+[76] [Normal] 
+[77] [Heading 2] 2.1. Technologies
+[78] [Heading 3] 2.1.1. Programming Language & Runtime
+[79] [Normal] Python 3 (v3.11/3.12): The primary programming language for the entire project. Python is the de facto standard for machine learning and computer vision projects due to its extensive ecosystem of scientific computing libraries, readable syntax, and strong community support. All data collection, preprocessing, model training, and inference scripts are written in Python.
+[80] [Heading 3] 2.1.2. Deep Learning Framework
+[81] [Normal] TensorFlow (v2.12.0): Google's open-source machine learning framework used as the backend for building, training, and running the 3D CNN model. TensorFlow provides GPU acceleration, automatic differentiation, and production-ready model serving capabilities.
+[82] [Normal] Keras (v2.12.0): The high-level neural network API running on top of TensorFlow. Keras provides the Sequential model API, layer primitives (Conv3D, MaxPooling3D, Dense, Dropout, Flatten), optimizers (Adam), loss functions (categorical_crossentropy), and training utilities (model.fit, model.predict) used throughout the project. Key Keras components used include:
+[83] [List Bullet] Conv3D: 3D convolutional layers that apply filters across both spatial (height, width) and temporal (frame sequence) dimensions, enabling the model to learn spatiotemporal features from video sequences.
+[84] [List Bullet] MaxPooling3D: Downsampling layers that reduce spatial and temporal dimensions, decreasing computational cost while retaining the most important features.
+[85] [List Bullet] Dense: Fully connected layers for classification. The final Dense layer uses softmax activation to output probability distributions across the 13 word classes.
+[86] [List Bullet] Dropout: Regularization layers (rate=0.5) that randomly zero out neurons during training to prevent overfitting.
+[87] [List Bullet] L2 Regularization (kernel_regularizer): Applied to Conv3D layers with a factor of 0.001 to penalize large weights and improve generalization.
+[88] [Heading 3] 2.1.3. Computer Vision Libraries
+[89] [Normal] OpenCV (v4.6.0.66): The primary computer vision library used for webcam capture (VideoCapture), image color space conversion (BGR to Grayscale, BGR to LAB), image preprocessing (CLAHE, GaussianBlur, bilateralFilter, filter2D for sharpening), image resizing, drawing annotations (circles on landmarks, text overlays), and video writing (VideoWriter for output files).
+[90] [Normal] Pillow (PIL) (v9.4.0): Python Imaging Library used for creating RGB images from numpy pixel arrays during the data saving process in the collection pipeline.
+[91] [Heading 3] 2.1.4. Data Processing & Utilities
+[92] [Normal] NumPy (v1.23.5): The fundamental numerical computing library used for array operations throughout the project ΓÇö storing frame sequences as 4D arrays (frames ├ù height ├ù width ├ù channels), preprocessing kernels (sharpening filter), and model input/output processing.
+[93] [Normal] scikit-learn: Used for data splitting (train_test_split with 80/20 ratio), label encoding (LabelEncoder), evaluation metrics (classification_report, balanced_accuracy_score, confusion_matrix, roc_curve, auc), and label binarization for ROC analysis.
+[94] [Normal] imageio (v2.27.0): Used for reading image files and writing MP4 video files from frame sequences during the data collection process (imageio.mimsave).
+[95] [Normal] matplotlib: Used in the training notebook for plotting training/validation accuracy and loss curves, class distribution histograms, and ROC-AUC curves.
+[96] [Normal] seaborn: Used for generating the confusion matrix heatmap visualization in the training notebook.
+[97] [Normal] 
+[98] [Heading 2] 2.2. Literature Review
+[99] [Heading 3] 2.2.1. Contextual Background
+[100] [Normal] The Communication Barrier for the Hearing Impaired: The World Health Organization (WHO) reports that over 430 million people worldwide suffer from disabling hearing loss, a number projected to rise to 700 million by 2050. While hearing aids and cochlear implants address some cases, many individuals rely on lip reading as a primary communication method. However, human lip reading is extremely difficult ΓÇö studies show that even professional lip readers achieve only 40-60% accuracy on unrestricted vocabulary. An automated lip reading system could significantly enhance communication accessibility.
+[101] [Normal] The Rise of Deep Learning in Visual Recognition: The deep learning revolution, beginning with AlexNet (Krizhevsky et al., 2012) winning ImageNet, has transformed computer vision. Convolutional Neural Networks (CNNs) have become the standard for image classification, and their extension to video analysis via 3D CNNs (Tran et al., 2015) has enabled temporal feature learning from video sequences. This project leverages these advances to apply 3D CNNs to the specific problem of lip movement classification.
+[102] [Normal] Audio-Visual Speech Recognition: The McGurk Effect (McGurk & MacDonald, 1976) demonstrated that visual information from lip movements significantly influences speech perception. This finding has driven decades of research into audio-visual speech recognition (AVSR), where visual lip information is fused with audio signals to improve recognition accuracy in noisy conditions (Potamianos et al., 2003).
+[103] [Heading 3] 2.2.2. Existing Solutions & Market Analysis
+[104] [Normal] LipNet (Assael et al., 2016): The first end-to-end deep learning model for sentence-level lip reading, achieving 95.2% accuracy on the GRID corpus. LipNet uses Spatiotemporal CNNs + GRUs + CTC loss, but requires large-scale labeled video datasets and significant computational resources.
+[105] [Normal] DeepMind's Visual Speech Recognition (Chung et al., 2017): "Lip Reading Sentences in the Wild" demonstrated performance surpassing professional human lip readers on the LRS dataset. However, the system requires massive training data (100,000+ utterances) and is designed for sentence-level recognition, making it impractical for lightweight, word-level applications.
+[106] [Normal] Google Speech-to-Text, Apple Siri, Amazon Alexa: These mainstream speech recognition systems operate entirely on audio input and cannot function in visually-observed-only scenarios. They offer no lip reading capability.
+[107] [Normal] Commercial Lip Reading Systems: Companies such as Liopa (UK) have developed lip reading technology for healthcare settings, but these are proprietary, expensive, and designed for specific clinical use cases rather than general-purpose word recognition.
+[108] [Normal] 
+[109] [Heading 2] 2.3. Problem Statement & Gaps
+[110] [Normal] Accessibility Gap: Despite 430 million people with hearing loss, no mainstream consumer application provides real-time visual lip reading to assist communication. Current assistive technology focuses on hearing aids and sign language translation, leaving lip reading automation as an unmet need.
+[111] [Normal] Complexity Gap: Existing deep learning lip reading systems (LipNet, DeepMind) require massive datasets, sentence-level architectures, and significant computational resources. There is a gap for lightweight, word-level models that can run in real-time on standard consumer hardware with custom-built, smaller datasets.
+[112] [Normal] Dataset Gap: Most lip reading datasets (GRID, LRW, LRS) feature controlled studio conditions and are designed for sentence or phoneme-level recognition. There is a scarcity of word-level datasets collected under natural webcam conditions suitable for training lightweight models.
+[113] [Normal] Audio-Free Gap: The vast majority of speech recognition systems require audio input. A purely visual system that operates without any microphone is needed for scenarios such as: communication through glass barriers, surveillance footage analysis, space environments, and any context where audio recording is impractical or prohibited.
+[114] [Heading 2] 2.4. The Role of Deep Learning Intervention (The Project's Contribution)
+[115] [Normal] From Audio to Visual: This project shifts speech recognition from audio-dependent to purely visual, demonstrating that a well-designed 3D CNN trained on lip movement sequences can achieve high accuracy (98.5% validation) for word-level classification without any audio signal.
+[116] [Normal] Custom Dataset Creation: The project contributes a novel word-level lip reading dataset of ~700 video clips across 13 words, collected under natural webcam conditions with an automated collection pipeline. This dataset and methodology can be replicated and extended by other researchers.
+[117] [Normal] Lightweight Real-Time Architecture: Unlike heavyweight sentence-level models, this project demonstrates that a relatively simple 3D CNN architecture (3 Conv3D layers + Dense layers) can achieve excellent word-level classification performance while being light enough for real-time webcam inference.
+[118] [Normal] End-to-End Pipeline: The project delivers a complete pipeline from data collection ΓåÆ preprocessing ΓåÆ model training ΓåÆ real-time inference ΓåÆ file-based inference, serving as a practical reference implementation for visual speech recognition research.
+[119] [Normal] Robust Preprocessing: The LAB-CLAHE-Gaussian-Bilateral-Sharpening preprocessing pipeline addresses the real-world challenge of varying lighting conditions during webcam-based lip capture, contributing a practical solution for normalizing lip appearance in uncontrolled environments.
+[120] [Normal] 
+[121] [Heading 1] 3    SYSTEM REQUIREMENTS STUDY
+[122] [Heading 2] 3.1  USER CHARACTERISTICS
+[123] [Heading 2] 3.2  HARDWARE AND SOFTWARE REQUIREMENTS
+[124] [Heading 2] 3.3  ASSUMPTIONS AND DEPENDENCIES
+[125] [Normal] 
+[126] [Heading 2] 3.1. User Characteristics
+[127] [Normal] The Computer Vision Lip Reading System is designed for two distinct user groups, each with specific roles and technical aptitudes.
+[128] [Heading 3] 3.1.1. Hearing-Impaired Individuals & Communication Aid Users (Primary Users)
+[129] [Normal] Role: End users who benefit from real-time visual lip reading for communication assistance.
+[130] [Normal] Characteristics:
+[131] [List Bullet] Demographics: Individuals with partial or complete hearing loss of all ages.
+[132] [List Bullet] Technical Expertise: Low to Medium. The system is designed for simple usage ΓÇö run a script and speak into the webcam.
+[133] [List Bullet] Frequency of Use: Regular (daily conversations, meetings, educational settings).
+[134] [Normal] Key Privileges:
+[135] [List Bullet] Use live prediction mode to see real-time word recognition from webcam.
+[136] [List Bullet] View predicted words displayed on screen.
+[137] [List Bullet] Reset prediction history for new conversations.
+[138] [Heading 3] 3.1.2. Researchers & Developers (Secondary Users)
+[139] [Normal] Role: Users who extend, modify, or build upon the system for research or development.
+[140] [Normal] Characteristics:
+[141] [List Bullet] Demographics: Computer science students, machine learning researchers, accessibility technology developers.
+[142] [List Bullet] Technical Expertise: High. Familiar with Python, deep learning, and computer vision.
+[143] [List Bullet] Frequency of Use: Periodic (during research, model retraining, dataset expansion).
+[144] [Normal] Key Privileges:
+[145] [List Bullet] Use data collection mode to record new training data for additional words.
+[146] [List Bullet] Retrain the model with expanded datasets using the Jupyter notebook.
+[147] [List Bullet] Modify preprocessing parameters and model architecture.
+[148] [List Bullet] Use file-based prediction for batch processing of video files.
+[149] [Normal] 
+[150] [Heading 2] 3.2. Hardware and Software Requirements
+[151] [Heading 3] 3.2.1. Hardware Requirements
+[152] [Normal] Client-Side (User Machine)
+[153] [List Bullet] Processor: Intel Core i5 or equivalent (quad-core 2.0 GHz minimum). GPU recommended for training (NVIDIA CUDA-compatible).
+[154] [List Bullet] RAM: Minimum 8 GB (16 GB recommended for model training).
+[155] [List Bullet] Webcam: Built-in or external USB webcam with minimum 480p resolution (720p recommended).
+[156] [List Bullet] Storage: Minimum 5 GB free space (3 GB for dataset, 1 GB for model weights, 1 GB for dependencies).
+[157] [List Bullet] Display: Standard monitor for viewing the webcam feed and prediction results.
+[158] [Normal] Training Environment (Optional)
+[159] [List Bullet] The training was performed on Kaggle using cloud GPU (NVIDIA Tesla P100 or T4).
+[160] [List Bullet] Local training requires an NVIDIA GPU with at least 4 GB VRAM and CUDA toolkit installed.
+[161] [Heading 3] 3.2.2. Software Requirements
+[162] [Normal] Development/Runtime Environment
+[163] [List Bullet] Operating System: Windows 10/11, macOS (Catalina or later), or Linux (Ubuntu 18.04+).
+[164] [List Bullet] Python: Version 3.11 or 3.12.
+[165] [List Bullet] Code Editor: Visual Studio Code, Cursor IDE, or Jupyter Notebook (for training).
+[166] [Heading 2] 3.3. Assumptions and Dependencies
+[167] [Heading 3] 3.3.1. Assumptions
+[168] [List Bullet] Webcam Availability: It is assumed that the user's machine has a functioning webcam accessible by the system. External USB webcams should work but may require driver installation.
+[169] [List Bullet] Frontal Face Orientation: The system assumes the user is facing the camera approximately frontally. Profile or extreme angle views will cause the facial landmark detector to fail, resulting in no lip detection.
+[170] [List Bullet] Adequate Lighting: It is assumed that the user's face is reasonably well-lit. While the contrast enhancement preprocessing helps normalize lighting, extremely dark or heavily backlit conditions may degrade accuracy.
+[171] [List Bullet] Single Speaker: The current implementation processes one face at a time (the first detected face). It is assumed that only one speaker is present in the camera frame.
+[172] [List Bullet] English Words Only: The system is trained exclusively on 13 English words. It assumes all spoken input belongs to this predefined vocabulary; out-of-vocabulary words will be misclassified into the closest known class.
+[173] [List Bullet] Consistent Speaking Style: The system assumes a natural speaking pace and mouth movement. Exaggerated or whispered speech may not match the training data distribution.
+[174] [Heading 3] 3.3.2. Dependencies
+[175] [List Bullet] Pre-trained Facial Landmark Model: The system depends on a pre-trained 68-point facial landmark model file. This file must be present in the designated model directory. Without it, face detection and lip extraction fail entirely.
+[176] [List Bullet] Trained Neural Network Weights: The trained 3D CNN weight files must be present in the model directory. Without pre-trained weights, the system cannot perform prediction.
+[177] [List Bullet] Webcam Interface: The webcam capture depends on the computer vision library interfacing with the system's camera driver. Compatibility issues may arise on certain operating systems or with specific webcam hardware.
+[178] [List Bullet] Package Compatibility: The project depends on specific versions of the deep learning framework, facial landmark library, and computer vision library that must be mutually compatible.
+[179] [List Bullet] GPU Drivers (Training Only): If retraining the model locally, the system depends on NVIDIA CUDA drivers and cuDNN library being correctly installed for GPU-accelerated training.
+[180] [Normal] 
+[181] [Heading 1] 4    SYSTEM DIAGRAMS
+[182] [Heading 2] 4.1  MODEL ARCHITECTURE DIAGRAM
+[183] [Heading 2] 4.2  DATA PIPELINE FLOWCHART
+[184] [Heading 2] 4.3  USE CASE DIAGRAM
+[185] [Heading 2] 4.4  SEQUENCE DIAGRAM
+[186] [Heading 2] 4.5  ACTIVITY DIAGRAM
+[187] [Heading 2] 4.6  DATA FLOW DIAGRAM
+[188] [Normal] 
+[189] [Heading 2] 4.1. Model Architecture Diagram
+[190] [Normal] A Model Architecture Diagram is a visual representation of the neural network structure, illustrating the sequence of layers, their configurations, and how data flows through the network from input to output. It is the most critical diagram for any deep learning project, as it directly communicates the design decisions behind the model.
+[191] [Normal] The Computer Vision Lip Reading System uses a 3D Convolutional Neural Network (3D CNN) built with TensorFlow/Keras Sequential API. The architecture is specifically designed to capture both spatial features (lip shape in each frame) and temporal features (how lip shape changes across the frame sequence). The complete model architecture is as follows:
+[192] [Normal] 
+[193] [Normal] Fig4.1: Model Architecture Diagram (3D CNN)
+[194] [Normal] 
+[195] [Heading 2] 4.2. Data Pipeline Flowchart
+[196] [Normal] A Data Pipeline Flowchart illustrates the end-to-end flow of data through a machine learning system ΓÇö from raw data acquisition to final model inference. For ML projects, this diagram is essential as it shows the complete lifecycle of data, including collection, preprocessing, training, evaluation, and deployment stages.
+[197] [Normal] The Computer Vision Lip Reading System pipeline consists of five major stages:
+[198] [Normal] 
+[199] [Normal] Fig4.2: Data Pipeline Flowchart
+[200] [Heading 2] 4.3. Use Case Diagram
+[201] [Normal] A use case diagram depicts the interactions between actors and the system, showcasing functionality from the user's perspective.
+[202] [Normal] Actors:
+[203] [List Bullet] Data Collector (Primary Actor): The person who records training data by speaking words into the webcam.
+[204] [List Bullet] End User (Primary Actor): The person who uses the live prediction system.
+[205] [List Bullet] Webcam Hardware (System Actor): Provides real-time video frames.
+[206] [List Bullet] Facial Landmark Detector (System Actor): Provides facial landmark coordinates.
+[207] [List Bullet] 3D CNN Model (System Actor): Performs word classification.
+[208] [Normal] Use Cases:
+[209] [List Bullet] Calibrate Lip Distance Threshold
+[210] [List Bullet] Collect Training Data for a Word
+[211] [List Bullet] Start Live Prediction Session
+[212] [List Bullet] Detect Face in Frame
+[213] [List Bullet] Extract Lip Region
+[214] [List Bullet] Detect Speaking Activity
+[215] [List Bullet] Capture & Preprocess Lip Frames
+[216] [List Bullet] Predict Spoken Word (automated)
+[217] [List Bullet] Display Predicted Word
+[218] [List Bullet] Run File-Based Prediction
+[219] [List Bullet] Save Output Video with Annotations
+[220] [List Bullet] Reset Prediction History
+[221] [Normal] [INSERT Fig4.3: Use Case Diagram HERE]
+[222] [Normal] Fig4.3: Use Case Diagram
+[223] [Normal] 
+[224] [Heading 2] 4.4. Sequence Diagram
+[225] [Normal] A sequence diagram shows the sequence of messages passed between objects over time during an interaction.
+[226] [Normal] Live Prediction Flow Sequence:
+[227] [Normal] [INSERT Fig4.4: Sequence Diagram HERE]
+[228] [Normal] Fig4.4: Sequence Diagram
+[229] [Heading 2] 4.5. Activity Diagram
+[230] [Normal] An activity diagram models the flow from one activity to another within the system.
+[231] [Normal] Data Collection & Prediction Activity Flow:
+[232] [Normal]  [INSERT Fig4.5: Activity Diagram HERE]
+[233] [Normal] Fig4.5: Activity Diagram
+[234] [Heading 2] 4.6. Data Flow Diagram
+[235] [Heading 3] 4.6.1. Context-Level-0 DFD
+[236] [Normal] The Context-Level-0 DFD shows the entire system as a single process:
+[237] [List Bullet] User provides: Word label (collection mode), Start/Stop commands
+[238] [List Bullet] Lip Reading System returns to User: Predicted word, Visual annotations on webcam feed
+[239] [List Bullet] Webcam Hardware provides: Raw video frames
+[240] [List Bullet] File System exchanges: Training data files (images, numerical arrays, video clips), Model weight files
+[241] [Normal] [INSERT Fig4.6.1: Context-Level-0 DFD HERE]
+[242] [Heading 3] 4.6.2. Context-Level-1 DFD
+[243] [Normal] The Level-1 DFD breaks the system into major processes:
+[244] [List Bullet] Process 1: Face & Lip Detection ΓÇô Receives raw frames, detects face using the facial landmark detector, extracts 68 landmarks, crops the lip region.
+[245] [List Bullet] Process 2: Lip Preprocessing ΓÇô Applies color space conversion, contrast enhancement, smoothing, bilateral filtering, and sharpening to normalize lip frames.
+[246] [List Bullet] Process 3: Speech Activity Detection ΓÇô Monitors lip distance to determine talking/not-talking state, manages frame buffers.
+[247] [List Bullet] Process 4: Frame Accumulation ΓÇô Accumulates 22 preprocessed lip frames (including pre-speech buffer frames) for a single word.
+[248] [List Bullet] Process 5: Classification (Prediction Mode) ΓÇô Feeds 22-frame tensor through the 3D CNN model, outputs the predicted word label.
+[249] [List Bullet] Process 6: Data Saving (Collection Mode) ΓÇô Saves 22-frame sequences as structured files, images, and videos to the dataset directory.
+[250] [List Bullet] Data Store: Dataset Directory ΓÇô Stores labeled word folders with frame data. Model Directory ΓÇô Stores trained model weights.
+[251] [Normal] [INSERT Fig4.6.2: Context-Level-1 DFD HERE]
+[252] [Heading 1] 5    DATA DICTIONARY
+[253] [Heading 2] 5.1  OVERVIEW
+[254] [Heading 2] 5.2  DATA SCHEMA
+[255] [Heading 2] 5.3  DATA INTEGRITY AND PROCESSING
+[256] [Heading 2] 5.4  DATASET DESCRIPTION AND STATISTICS
+[257] [Normal] 
+[258] [Heading 2] 5.1. Overview
+[259] [Normal] The Computer Vision Lip Reading System stores and processes data in two forms: (1) the training dataset stored as files on disk in a structured dataset directory, and (2) the in-memory data structures used during real-time collection and prediction. Unlike database-driven applications, this system uses the file system as its primary storage mechanism for training data, and numerical arrays as the in-memory data format for model input/output. The model weights are stored in HDF5 format, and the facial landmark model is stored as a pre-trained binary file.
+[260] [Heading 2] 5.2. Data Schema
+[261] [Heading 3] 5.2.1. Collected Data Structure
+[262] [Normal] Each word sample is stored in a dedicated folder within the dataset directory, named by word label and sample number (e.g., hello_1/, cat_23/, bye_5/).
+[263] [Normal] 
+[264] [Normal] Total Dataset Statistics:
+[265] [Heading 3] 5.2.2. Model Input Tensor
+[266] [Normal] The 3D CNN model expects input in the following tensor format:
+[267] [Normal] Full input shape: (batch_size, 22, 80, 112, 3)
+[268] [Normal] 
+[269] [Normal] Label Encoding Mapping:
+[270] [Heading 2] 5.3. Data Integrity and Processing
+[271] [Normal] Frame Count Consistency: Every word sample is guaranteed to contain exactly 22 frames. The data collection module enforces this through a combination of pre-speech buffer frames (4 frames of context), active speech frames, and silence detection logic. Samples that do not meet the exact 22-frame requirement are discarded during collection.
+[272] [Normal] Spatial Consistency: All lip frames are resized to exactly 112├ù80 pixels using standard image resizing, regardless of the original lip region size detected by the facial landmarks. This ensures uniform tensor dimensions for the 3D CNN input.
+[273] [Normal] Preprocessing Pipeline: Every frame undergoes the same preprocessing chain:
+[274] [List Bullet] LAB Color Space Conversion for luminance-chrominance separation
+[275] [List Bullet] CLAHE Contrast Enhancement (clip limit of 3.0, tile grid of 3├ù3) on the luminance channel
+[276] [List Bullet] Conversion back to the original color space
+[277] [List Bullet] Gaussian Blur (7├ù7 kernel) for initial noise reduction
+[278] [List Bullet] Bilateral Filtering for edge-preserving smoothing
+[279] [List Bullet] Sharpening via a custom convolution kernel
+[280] [List Bullet] Final Gaussian Blur (5├ù5 kernel) for subtle smoothing
+[281] [Normal] Data Types: Raw frames are stored as lists of integers (0-255) in serialized format. For model input, they are converted to floating-point numerical arrays. The model uses 32-bit floating point internally for all computations.
+[282] [Normal] Train/Test Split: The dataset is split 80% training / 20% validation using a stratified random split with a fixed random seed for reproducibility.
+[283] [Heading 2] 5.4. Dataset Description and Statistics
+[284] [Normal] This section provides a comprehensive description of the dataset used for training and evaluating the lip reading model. Since no suitable publicly available dataset existed for this specific word-level lip reading task with the required preprocessing format, a custom dataset was created from scratch using the data collection pipeline described in earlier sections.
+[285] [Heading 3] 5.4.1. Dataset Overview
+[286] [Normal] The dataset consists of approximately 700 video clips of individual words being spoken, captured using a standard webcam under controlled indoor lighting conditions. The dataset was manually collected and labeled, with each sample representing a single spoken word captured as a sequence of 22 preprocessed lip-region frames. The total dataset size is approximately 3 GB, stored across individually labeled folders in the project's dataset directory. The dataset is also publicly available on Kaggle for reproducibility and further research.
+[287] [Normal] The dataset comprises 13 distinct word classes, carefully selected to include a mix of common English words and demonstrative phrases. The vocabulary was chosen to enable the construction of simple sentences (e.g., "here is a demo", "can you read my lips") while also including visually distinct words (e.g., "cat", "dog", "hello", "bye") for robust classification evaluation.
+[288] [Heading 3] 5.4.2. Per-Class Sample Distribution
+[289] [Normal] The following table presents the number of collected samples for each word class in the dataset. The distribution is approximately balanced, with each class containing between 49 and 61 samples, which helps reduce class imbalance bias during model training.
+[290] [Normal] The approximate balance across classes (standard deviation of Γëê3.2 samples) indicates that the dataset is well-distributed, minimizing the risk of the model developing a bias toward any particular word class. The "here" class has the highest sample count (61), while "hello" has the lowest (49), representing only a 12-sample difference across the extremes.
+[291] [Heading 3] 5.4.3. Dataset Characteristics
+[292] [Normal] The following table summarizes the key characteristics of the dataset:
+[293] [Heading 3] 5.4.4. Data Collection Methodology
+[294] [Normal] The data collection process was designed to capture natural lip movements during speech while maintaining consistency across all samples. The methodology involved the following steps:
+[295] [Normal] 1. Subject Positioning:
+[296] [Normal] The speaker sits approximately 50-70 cm from the webcam, facing directly toward the camera with adequate frontal lighting to ensure clear facial visibility. The environment is kept consistent across all recording sessions to minimize variance in background and lighting.
+[297] [Normal] 2. Lip Distance Calibration:
+[298] [Normal] Before each recording session, the system performs a calibration step. The speaker keeps their mouth closed while the system measures the resting lip distance (the Euclidean distance between the upper and lower lip landmarks) over 50 frames to establish a personalized speaking threshold. This threshold is used to detect when the speaker begins and stops talking.
+[299] [Normal] 3. Word Recording:
+[300] [Normal] The speaker is prompted to speak a specific word. The system monitors the lip distance in real-time and begins recording when the distance exceeds the calibrated threshold (indicating the speaker has opened their mouth). Recording continues until the speaker closes their mouth for a sustained period (10 consecutive frames below threshold), at which point the system determines the word has been completed.
+[301] [Normal] 4. Frame Assembly:
+[302] [Normal] Each captured word is assembled into a fixed 22-frame sequence. This includes 4 pre-speech buffer frames (captured before the speaking threshold was crossed) and the active speech frames. If additional frames are needed to reach the 22-frame target, the system continues capturing until the requirement is met. This ensures temporal context is preserved from before the onset of speech.
+[303] [Normal] 5. Preprocessing and Storage:
+[304] [Normal] Each of the 22 lip-region frames undergoes the standardized preprocessing pipeline (color space conversion, contrast enhancement, smoothing, and sharpening) before being saved. The processed frames are stored in three formats: individual image files for visual inspection, a serialized numerical array for model training, and a video clip for human review of the captured sequence.
+[305] [Normal] 6. Quality Control:
+[306] [Normal] Each recorded sample is visually verified through the saved video clip. Samples with poor face detection, excessive motion blur, or incomplete word articulation are manually discarded and re-recorded to maintain dataset quality.
+[307] [Normal] 
+[308] [Heading 1] 6    RESULT, DISCUSSION AND CONCLUSION
+[309] [Heading 2] 6.1  RESULT
+[310] [Heading 2] 6.2  CONCLUSION
+[311] [Normal] 
+[312] [Heading 2] 6.1. Result
+[313] [Normal] The Computer Vision Lip Reading System has been successfully developed and tested, demonstrating the following functional outcomes:
+[314] [Normal] 1. Custom Dataset Creation:
+[315] [Normal] The data collection pipeline successfully captured approximately 700 video clips across 13 word classes, totaling ~3 GB of data. Each clip contains exactly 22 preprocessed lip-region frames at 80├ù112 pixels. The automated speech detection based on lip-distance thresholds reliably distinguished speaking from non-speaking states.
+[316] [Normal] 2. Model Training Performance:
+[317] [Normal] The 3D CNN model (3 convolutional layers with L2 regularization, 3 fully connected layers with dropout) was trained for 20 epochs with Adam optimizer and categorical cross-entropy loss, achieving:
+[318] [List Bullet] Training Accuracy: 95.7%
+[319] [List Bullet] Validation Accuracy: 98.5%
+[320] [List Bullet] The validation accuracy exceeding training accuracy suggests effective regularization and a well-generalized model that is not overfitting.
+[321] [Normal] 3. Real-Time Live Prediction:
+[322] [Normal] The live prediction module successfully performs real-time word prediction from a webcam feed. The system detects when the user speaks, captures 22 lip frames, feeds them through the model, and displays the predicted word on screen. A duplicate prevention mechanism ensures that the same word is not predicted consecutively, and the user can reset the prediction history for a new sentence.
+[323] [Normal] 4. File-Based Prediction:
+[324] [Normal] The file-based prediction module successfully processes pre-recorded video files, performs frame-by-frame lip reading, and saves annotated output videos with predicted word overlays. This enables batch processing and demonstration recording.
+[325] [Normal] [INSERT Screenshots ΓÇô Data Collection Mode, Live Prediction Mode, Sample Lip Frames HERE]
+[326] [Normal] 
+[327] [Heading 2] 6.2. Conclusion
+[328] [Normal] This project successfully demonstrates that visual-only lip reading using 3D Convolutional Neural Networks is a viable approach for word-level speech recognition. By combining facial landmark detection, robust image preprocessing, and a well-designed 3D CNN architecture, the system achieves 98.5% validation accuracy across 13 word classesΓÇöwithout using any audio information.
+[329] [Normal] The project validates several key technical achievements:
+[330] [List Bullet] A custom-built data collection pipeline can efficiently generate high-quality lip reading training data using only a standard webcam and a pre-trained facial landmark detector.
+[331] [List Bullet] 3D CNNs are effective at capturing spatiotemporal features from lip movement sequences, enabling accurate word classification from visual data alone.
+[332] [List Bullet] The multi-stage preprocessing pipeline (color space conversion, contrast enhancement, smoothing, bilateral filtering, and sharpening) effectively normalizes lip frame appearance across varying lighting conditions.
+[333] [List Bullet] The complete pipeline from data collection ΓåÆ training ΓåÆ real-time inference can run on standard consumer hardware without requiring specialized equipment.
+[334] [Normal] Future enhancements planned for subsequent iterations include:
+[335] [List Bullet] Expanding the vocabulary beyond 13 words to support a larger set of common English words.
+[336] [List Bullet] Implementing sentence-level lip reading by combining the word-level model with a language model for context-aware prediction.
+[337] [List Bullet] Adding speaker-independent training by collecting data from multiple speakers to improve generalization across different face shapes and speaking styles.
+[338] [List Bullet] Implementing a graphical user interface (GUI) for easier usage by non-technical users.
+[339] [List Bullet] Exploring transfer learning from larger pre-trained video models (e.g., I3D, SlowFast) to improve accuracy with less training data.
+[340] [List Bullet] Deploying as a web application or mobile app for broader accessibility.
+[341] [List Bullet] Integrating with assistive technology frameworks for hearing-impaired users.
+[342] [Normal] By bridging the gap between audio-dependent speech recognition and visual-only lip reading, this project contributes to the growing body of work demonstrating that computer vision and deep learning are powerful tools for building accessible communication technology.
+[343] [Normal] 
+[344] [Heading 1] 7    BIBLIOGRAPHY
+[345] [Heading 2] 7.1  REFERENCES
+[346] [Normal] 
+[347] [Heading 2] 7.1. References
+[348] [Heading 3] 7.1.1. Academic Papers & Journals
+[349] [Normal] [LipNet] Y. M. Assael, B. Shillingford, S. Whiteson, and N. de Freitas, "LipNet: End-to-End Sentence-level Lipreading," arXiv preprint arXiv:1611.01599, 2016.
+[350] [Normal] [Lip Reading in the Wild] J. S. Chung, A. Senior, O. Vinyals, and A. Zisserman, "Lip Reading Sentences in the Wild," Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 6447-6456, 2017.
+[351] [Normal] [C3D] D. Tran, L. Bourdev, R. Fergus, L. Torresani, and M. Paluri, "Learning Spatiotemporal Features with 3D Convolutional Networks," Proceedings of the IEEE International Conference on Computer Vision (ICCV), pp. 4489-4497, 2015.
+[352] [Normal] [Facial Landmarks] V. Kazemi and J. Sullivan, "One Millisecond Face Alignment with an Ensemble of Regression Trees," Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 1867-1874, 2014.
+[353] [Normal] [Audio-Visual SR] G. Potamianos, C. Neti, G. Gravier, A. Garg, and A. W. Senior, "Recent Advances in the Automatic Recognition of Audiovisual Speech," Proceedings of the IEEE, vol. 91, no. 9, pp. 1306-1326, 2003.
+[354] [Normal] [McGurk Effect] H. McGurk and J. MacDonald, "Hearing lips and seeing voices," Nature, vol. 264, no. 5588, pp. 746-748, 1976.
+[355] [Normal] [GRID Corpus] M. Cooke, J. Barker, S. Cunningham, and X. Shao, "An audio-visual corpus for speech perception and automatic speech recognition," Journal of the Acoustical Society of America, vol. 120, no. 5, pp. 2421-2424, 2006.
+[356] [Normal] [AlexNet] A. Krizhevsky, I. Sutskever, and G. E. Hinton, "ImageNet Classification with Deep Convolutional Neural Networks," Advances in Neural Information Processing Systems (NIPS), pp. 1097-1105, 2012.
+[357] [Normal] [WHO Hearing Loss] World Health Organization, "World Report on Hearing," Geneva: WHO, 2021. (Evidence that 430 million people globally have disabling hearing loss).
+[358] [Heading 3] 7.1.2. Technical Documentation
+[359] [Normal] TensorFlow Documentation. 
+[360] [Normal] Keras Documentation.
+[361] [Normal] OpenCV Documentation. 
+[362] [Normal] dlib Documentation. 
+[363] [Heading 3] 7.1.3. Web Resources & Libraries
+[364] [Normal] dlib ΓÇô Face Landmark Detection. [Online]. Available: http://dlib.net/. (C++ toolkit with Python bindings for face detection and shape prediction).
+[365] [Normal] dlib Shape Predictor 68 Landmarks. [Online]. Available: https://github.com/davisking/dlib-models. (Pre-trained facial landmark model used in this project).
+[366] [Normal] OpenCV ΓÇô Open Source Computer Vision Library. [Online]. Available: https://opencv.org/. (Industry-standard computer vision library used for image/video processing).
+[367] [Normal] Kaggle Lip Reading Dataset. [Online]. Available: https://www.kaggle.com/datasets/allenye66/best-lip-reading-dataset. (The dataset created for this project, hosted on Kaggle).
+[368] [Normal] imageio ΓÇô Python Library for Image/Video I/O. [Online]. Available: https://imageio.readthedocs.io/. (Used for reading images and writing MP4 videos from frame sequences)

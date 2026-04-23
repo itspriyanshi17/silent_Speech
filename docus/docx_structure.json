@@ -1,0 +1,1717 @@
+[
+    {
+        "index": 0,
+        "style": "Heading 1",
+        "text": "1    INTRODUCTION"
+    },
+    {
+        "index": 1,
+        "style": "Heading 2",
+        "text": "1.1  INTRODUCTION"
+    },
+    {
+        "index": 2,
+        "style": "Heading 2",
+        "text": "1.2  AIMS AND OBJECTIVE OF THE WORK"
+    },
+    {
+        "index": 3,
+        "style": "Heading 2",
+        "text": "1.3  BRIEF LITERATURE REVIEW"
+    },
+    {
+        "index": 4,
+        "style": "Heading 2",
+        "text": "1.4  PROBLEM DEFINITION"
+    },
+    {
+        "index": 5,
+        "style": "Heading 2",
+        "text": "1.5  PLAN OF THE WORK"
+    },
+    {
+        "index": 7,
+        "style": "Heading 2",
+        "text": "1.1. Introduction"
+    },
+    {
+        "index": 8,
+        "style": "Normal",
+        "text": "Lip reading, also known as visual speech recognition (VSR), is the process of interpreting spoken la..."
+    },
+    {
+        "index": 9,
+        "style": "Normal",
+        "text": "The system operates entirely on visual input\u2014no audio signal is required. A webcam captures the user..."
+    },
+    {
+        "index": 10,
+        "style": "Normal",
+        "text": "These 22-frame sequences form the input to a 3D Convolutional Neural Network that has been trained t..."
+    },
+    {
+        "index": 11,
+        "style": "Normal",
+        "text": "The model was trained on a custom-built dataset of approximately 700 video clips (~3 GB of data), co..."
+    },
+    {
+        "index": 12,
+        "style": "Normal",
+        "text": "By leveraging advances in facial landmark detection, image preprocessing, and 3D convolutional neura..."
+    },
+    {
+        "index": 14,
+        "style": "Heading 2",
+        "text": "1.2. Aims and Objective of the Work"
+    },
+    {
+        "index": 15,
+        "style": "Heading 3",
+        "text": "1.2.1. Aims of \"Computer Vision Lip Reading System\""
+    },
+    {
+        "index": 16,
+        "style": "Normal",
+        "text": "The Computer Vision Lip Reading System is designed to recognize spoken words from visual lip movemen..."
+    },
+    {
+        "index": 17,
+        "style": "List Bullet",
+        "text": "Visual Speech Recognition: To develop a system that can accurately recognize spoken words solely fro..."
+    },
+    {
+        "index": 18,
+        "style": "List Bullet",
+        "text": "Automated Lip Detection & Frame Capture: To build an intelligent pipeline that automatically detects..."
+    },
+    {
+        "index": 19,
+        "style": "List Bullet",
+        "text": "Deep Learning Classification: To train a 3D Convolutional Neural Network capable of learning spatiot..."
+    },
+    {
+        "index": 20,
+        "style": "List Bullet",
+        "text": "Real-Time Inference: To enable real-time word prediction from a live webcam feed, providing immediat..."
+    },
+    {
+        "index": 21,
+        "style": "Normal",
+        "text": "In short, the project aims to demonstrate that computer vision and deep learning can be combined to ..."
+    },
+    {
+        "index": 22,
+        "style": "Heading 3",
+        "text": "1.2.2. Objectives of \"Computer Vision Lip Reading System\""
+    },
+    {
+        "index": 23,
+        "style": "Normal",
+        "text": "The specific technical objectives of this project are:"
+    },
+    {
+        "index": 24,
+        "style": "List Bullet",
+        "text": "Implement Facial Landmark Detection: Utilize a pre-trained shape predictor with 68 facial landmarks ..."
+    },
+    {
+        "index": 25,
+        "style": "List Bullet",
+        "text": "Build a Custom Dataset: Design and implement a data collection pipeline that uses lip-distance thres..."
+    },
+    {
+        "index": 26,
+        "style": "List Bullet",
+        "text": "Develop Image Preprocessing Pipeline: Implement a robust preprocessing chain including LAB color spa..."
+    },
+    {
+        "index": 27,
+        "style": "List Bullet",
+        "text": "Design and Train a 3D CNN Model: Architect and train a sequential deep learning model with three 3D ..."
+    },
+    {
+        "index": 28,
+        "style": "List Bullet",
+        "text": "Implement Live Prediction System: Build a real-time prediction module that captures webcam frames, d..."
+    },
+    {
+        "index": 29,
+        "style": "List Bullet",
+        "text": "Implement File-Based Prediction: Build a video file prediction module that processes pre-recorded vi..."
+    },
+    {
+        "index": 31,
+        "style": "Heading 2",
+        "text": "1.3. Brief Literature Review"
+    },
+    {
+        "index": 32,
+        "style": "Normal",
+        "text": "The development of this Lip Reading System is grounded in existing research and innovations across t..."
+    },
+    {
+        "index": 33,
+        "style": "Heading 3",
+        "text": "1.3.1. Visual Speech Recognition"
+    },
+    {
+        "index": 34,
+        "style": "Normal",
+        "text": "Visual speech recognition (VSR), also known as automatic lip reading, has been an active area of res..."
+    },
+    {
+        "index": 35,
+        "style": "Heading 3",
+        "text": "1.3.2. Deep Learning for Lip Reading"
+    },
+    {
+        "index": 36,
+        "style": "Normal",
+        "text": "The breakthrough application of deep learning to lip reading came with the LipNet model (Assael et a..."
+    },
+    {
+        "index": 37,
+        "style": "Heading 3",
+        "text": "1.3.3. Facial Landmark Detection"
+    },
+    {
+        "index": 38,
+        "style": "Normal",
+        "text": "The facial landmark detector used in this project, based on the work of Kazemi and Sullivan (2014) \"..."
+    },
+    {
+        "index": 40,
+        "style": "Heading 2",
+        "text": "1.4. Problem Definition"
+    },
+    {
+        "index": 41,
+        "style": "Normal",
+        "text": "The current landscape of speech recognition and accessibility technology faces several critical chal..."
+    },
+    {
+        "index": 42,
+        "style": "List Bullet",
+        "text": "Audio Dependency of Speech Recognition: Mainstream speech recognition systems (Google Speech-to-Text..."
+    },
+    {
+        "index": 43,
+        "style": "List Bullet",
+        "text": "Limited Accessibility for Hearing-Impaired: While sign language recognition has received research at..."
+    },
+    {
+        "index": 44,
+        "style": "List Bullet",
+        "text": "Dataset Scarcity for Word-Level Lip Reading: Most existing lip reading datasets (GRID, LRW, LRS) are..."
+    },
+    {
+        "index": 45,
+        "style": "List Bullet",
+        "text": "Real-Time Processing Challenge: Performing facial landmark detection, lip region extraction, image p..."
+    },
+    {
+        "index": 47,
+        "style": "Heading 2",
+        "text": "1.5. Plan of the Work"
+    },
+    {
+        "index": 48,
+        "style": "Normal",
+        "text": "To ensure the successful development of the Computer Vision Lip Reading System, the project work is ..."
+    },
+    {
+        "index": 49,
+        "style": "Normal",
+        "text": "Phase 1: Requirement Analysis & Feasibility"
+    },
+    {
+        "index": 50,
+        "style": "List Bullet",
+        "text": "Reviewing literature on visual speech recognition, 3D CNNs, and facial landmark detection."
+    },
+    {
+        "index": 51,
+        "style": "List Bullet",
+        "text": "Defining the vocabulary: 13 common English words."
+    },
+    {
+        "index": 52,
+        "style": "List Bullet",
+        "text": "Determining the technical stack: Python, TensorFlow/Keras, OpenCV, dlib, NumPy."
+    },
+    {
+        "index": 53,
+        "style": "List Bullet",
+        "text": "Evaluating feasibility of real-time lip reading on consumer hardware."
+    },
+    {
+        "index": 54,
+        "style": "Normal",
+        "text": "Phase 2: Data Collection & Dataset Creation"
+    },
+    {
+        "index": 55,
+        "style": "List Bullet",
+        "text": "Designing the data collection pipeline with automatic speech detection via lip-distance thresholds."
+    },
+    {
+        "index": 56,
+        "style": "List Bullet",
+        "text": "Implementing the data collection module with calibration mode, circular frame buffers, and standardi..."
+    },
+    {
+        "index": 57,
+        "style": "List Bullet",
+        "text": "Collecting ~700 video clips across 13 word classes using webcam recordings."
+    },
+    {
+        "index": 58,
+        "style": "List Bullet",
+        "text": "Organizing data into labeled folders with structured array files and video files."
+    },
+    {
+        "index": 59,
+        "style": "Normal",
+        "text": "Phase 3: Model Design & Training"
+    },
+    {
+        "index": 60,
+        "style": "List Bullet",
+        "text": "Designing the 3D CNN architecture with 3D convolutional, max-pooling, fully connected, and dropout l..."
+    },
+    {
+        "index": 61,
+        "style": "List Bullet",
+        "text": "Implementing data loading, label encoding, and train/test split (80/20)."
+    },
+    {
+        "index": 62,
+        "style": "List Bullet",
+        "text": "Training the model for 20 epochs with Adam optimizer and categorical cross-entropy loss."
+    },
+    {
+        "index": 63,
+        "style": "List Bullet",
+        "text": "Evaluating with confusion matrix, classification report, ROC-AUC curves, and balanced accuracy."
+    },
+    {
+        "index": 64,
+        "style": "Normal",
+        "text": "Phase 4: Inference System Development"
+    },
+    {
+        "index": 65,
+        "style": "List Bullet",
+        "text": "Building the real-time prediction module for webcam-based word prediction."
+    },
+    {
+        "index": 66,
+        "style": "List Bullet",
+        "text": "Building the file-based prediction module for batch inference on pre-recorded video files."
+    },
+    {
+        "index": 67,
+        "style": "List Bullet",
+        "text": "Implementing the same preprocessing pipeline used during training for inference consistency."
+    },
+    {
+        "index": 68,
+        "style": "Normal",
+        "text": "Phase 5: Testing & Validation"
+    },
+    {
+        "index": 69,
+        "style": "List Bullet",
+        "text": "Testing with various speakers, lighting conditions, and camera angles."
+    },
+    {
+        "index": 70,
+        "style": "List Bullet",
+        "text": "Validating model accuracy against the test set (98.5% validation accuracy achieved)."
+    },
+    {
+        "index": 71,
+        "style": "List Bullet",
+        "text": "Recording demonstration videos to showcase system capabilities."
+    },
+    {
+        "index": 73,
+        "style": "Heading 1",
+        "text": "2    TECHNOLOGY AND LITERATURE REVIEW"
+    },
+    {
+        "index": 74,
+        "style": "Heading 2",
+        "text": "2.1  TECHNOLOGIES"
+    },
+    {
+        "index": 75,
+        "style": "Heading 2",
+        "text": "2.2  LITERATURE REVIEW"
+    },
+    {
+        "index": 77,
+        "style": "Heading 2",
+        "text": "2.1. Technologies"
+    },
+    {
+        "index": 78,
+        "style": "Heading 3",
+        "text": "2.1.1. Programming Language & Runtime"
+    },
+    {
+        "index": 79,
+        "style": "Normal",
+        "text": "Python 3 (v3.11/3.12): The primary programming language for the entire project. Python is the de fac..."
+    },
+    {
+        "index": 80,
+        "style": "Heading 3",
+        "text": "2.1.2. Deep Learning Framework"
+    },
+    {
+        "index": 81,
+        "style": "Normal",
+        "text": "TensorFlow (v2.12.0): Google's open-source machine learning framework used as the backend for buildi..."
+    },
+    {
+        "index": 82,
+        "style": "Normal",
+        "text": "Keras (v2.12.0): The high-level neural network API running on top of TensorFlow. Keras provides the ..."
+    },
+    {
+        "index": 83,
+        "style": "List Bullet",
+        "text": "Conv3D: 3D convolutional layers that apply filters across both spatial (height, width) and temporal ..."
+    },
+    {
+        "index": 84,
+        "style": "List Bullet",
+        "text": "MaxPooling3D: Downsampling layers that reduce spatial and temporal dimensions, decreasing computatio..."
+    },
+    {
+        "index": 85,
+        "style": "List Bullet",
+        "text": "Dense: Fully connected layers for classification. The final Dense layer uses softmax activation to o..."
+    },
+    {
+        "index": 86,
+        "style": "List Bullet",
+        "text": "Dropout: Regularization layers (rate=0.5) that randomly zero out neurons during training to prevent ..."
+    },
+    {
+        "index": 87,
+        "style": "List Bullet",
+        "text": "L2 Regularization (kernel_regularizer): Applied to Conv3D layers with a factor of 0.001 to penalize ..."
+    },
+    {
+        "index": 88,
+        "style": "Heading 3",
+        "text": "2.1.3. Computer Vision Libraries"
+    },
+    {
+        "index": 89,
+        "style": "Normal",
+        "text": "OpenCV (v4.6.0.66): The primary computer vision library used for webcam capture (VideoCapture), imag..."
+    },
+    {
+        "index": 90,
+        "style": "Normal",
+        "text": "Pillow (PIL) (v9.4.0): Python Imaging Library used for creating RGB images from numpy pixel arrays d..."
+    },
+    {
+        "index": 91,
+        "style": "Heading 3",
+        "text": "2.1.4. Data Processing & Utilities"
+    },
+    {
+        "index": 92,
+        "style": "Normal",
+        "text": "NumPy (v1.23.5): The fundamental numerical computing library used for array operations throughout th..."
+    },
+    {
+        "index": 93,
+        "style": "Normal",
+        "text": "scikit-learn: Used for data splitting (train_test_split with 80/20 ratio), label encoding (LabelEnco..."
+    },
+    {
+        "index": 94,
+        "style": "Normal",
+        "text": "imageio (v2.27.0): Used for reading image files and writing MP4 video files from frame sequences dur..."
+    },
+    {
+        "index": 95,
+        "style": "Normal",
+        "text": "matplotlib: Used in the training notebook for plotting training/validation accuracy and loss curves,..."
+    },
+    {
+        "index": 96,
+        "style": "Normal",
+        "text": "seaborn: Used for generating the confusion matrix heatmap visualization in the training notebook."
+    },
+    {
+        "index": 98,
+        "style": "Heading 2",
+        "text": "2.2. Literature Review"
+    },
+    {
+        "index": 99,
+        "style": "Heading 3",
+        "text": "2.2.1. Contextual Background"
+    },
+    {
+        "index": 100,
+        "style": "Normal",
+        "text": "The Communication Barrier for the Hearing Impaired: The World Health Organization (WHO) reports that..."
+    },
+    {
+        "index": 101,
+        "style": "Normal",
+        "text": "The Rise of Deep Learning in Visual Recognition: The deep learning revolution, beginning with AlexNe..."
+    },
+    {
+        "index": 102,
+        "style": "Normal",
+        "text": "Audio-Visual Speech Recognition: The McGurk Effect (McGurk & MacDonald, 1976) demonstrated that visu..."
+    },
+    {
+        "index": 103,
+        "style": "Heading 3",
+        "text": "2.2.2. Existing Solutions & Market Analysis"
+    },
+    {
+        "index": 104,
+        "style": "Normal",
+        "text": "LipNet (Assael et al., 2016): The first end-to-end deep learning model for sentence-level lip readin..."
+    },
+    {
+        "index": 105,
+        "style": "Normal",
+        "text": "DeepMind's Visual Speech Recognition (Chung et al., 2017): \"Lip Reading Sentences in the Wild\" demon..."
+    },
+    {
+        "index": 106,
+        "style": "Normal",
+        "text": "Google Speech-to-Text, Apple Siri, Amazon Alexa: These mainstream speech recognition systems operate..."
+    },
+    {
+        "index": 107,
+        "style": "Normal",
+        "text": "Commercial Lip Reading Systems: Companies such as Liopa (UK) have developed lip reading technology f..."
+    },
+    {
+        "index": 109,
+        "style": "Heading 2",
+        "text": "2.3. Problem Statement & Gaps"
+    },
+    {
+        "index": 110,
+        "style": "Normal",
+        "text": "Accessibility Gap: Despite 430 million people with hearing loss, no mainstream consumer application ..."
+    },
+    {
+        "index": 111,
+        "style": "Normal",
+        "text": "Complexity Gap: Existing deep learning lip reading systems (LipNet, DeepMind) require massive datase..."
+    },
+    {
+        "index": 112,
+        "style": "Normal",
+        "text": "Dataset Gap: Most lip reading datasets (GRID, LRW, LRS) feature controlled studio conditions and are..."
+    },
+    {
+        "index": 113,
+        "style": "Normal",
+        "text": "Audio-Free Gap: The vast majority of speech recognition systems require audio input. A purely visual..."
+    },
+    {
+        "index": 114,
+        "style": "Heading 2",
+        "text": "2.4. The Role of Deep Learning Intervention (The Project's Contribution)"
+    },
+    {
+        "index": 115,
+        "style": "Normal",
+        "text": "From Audio to Visual: This project shifts speech recognition from audio-dependent to purely visual, ..."
+    },
+    {
+        "index": 116,
+        "style": "Normal",
+        "text": "Custom Dataset Creation: The project contributes a novel word-level lip reading dataset of ~700 vide..."
+    },
+    {
+        "index": 117,
+        "style": "Normal",
+        "text": "Lightweight Real-Time Architecture: Unlike heavyweight sentence-level models, this project demonstra..."
+    },
+    {
+        "index": 118,
+        "style": "Normal",
+        "text": "End-to-End Pipeline: The project delivers a complete pipeline from data collection \u2192 preprocessing \u2192..."
+    },
+    {
+        "index": 119,
+        "style": "Normal",
+        "text": "Robust Preprocessing: The LAB-CLAHE-Gaussian-Bilateral-Sharpening preprocessing pipeline addresses t..."
+    },
+    {
+        "index": 121,
+        "style": "Heading 1",
+        "text": "3    SYSTEM REQUIREMENTS STUDY"
+    },
+    {
+        "index": 122,
+        "style": "Heading 2",
+        "text": "3.1  USER CHARACTERISTICS"
+    },
+    {
+        "index": 123,
+        "style": "Heading 2",
+        "text": "3.2  HARDWARE AND SOFTWARE REQUIREMENTS"
+    },
+    {
+        "index": 124,
+        "style": "Heading 2",
+        "text": "3.3  ASSUMPTIONS AND DEPENDENCIES"
+    },
+    {
+        "index": 126,
+        "style": "Heading 2",
+        "text": "3.1. User Characteristics"
+    },
+    {
+        "index": 127,
+        "style": "Normal",
+        "text": "The Computer Vision Lip Reading System is designed for two distinct user groups, each with specific ..."
+    },
+    {
+        "index": 128,
+        "style": "Heading 3",
+        "text": "3.1.1. Hearing-Impaired Individuals & Communication Aid Users (Primary Users)"
+    },
+    {
+        "index": 129,
+        "style": "Normal",
+        "text": "Role: End users who benefit from real-time visual lip reading for communication assistance."
+    },
+    {
+        "index": 130,
+        "style": "Normal",
+        "text": "Characteristics:"
+    },
+    {
+        "index": 131,
+        "style": "List Bullet",
+        "text": "Demographics: Individuals with partial or complete hearing loss of all ages."
+    },
+    {
+        "index": 132,
+        "style": "List Bullet",
+        "text": "Technical Expertise: Low to Medium. The system is designed for simple usage \u2014 run a script and speak..."
+    },
+    {
+        "index": 133,
+        "style": "List Bullet",
+        "text": "Frequency of Use: Regular (daily conversations, meetings, educational settings)."
+    },
+    {
+        "index": 134,
+        "style": "Normal",
+        "text": "Key Privileges:"
+    },
+    {
+        "index": 135,
+        "style": "List Bullet",
+        "text": "Use live prediction mode to see real-time word recognition from webcam."
+    },
+    {
+        "index": 136,
+        "style": "List Bullet",
+        "text": "View predicted words displayed on screen."
+    },
+    {
+        "index": 137,
+        "style": "List Bullet",
+        "text": "Reset prediction history for new conversations."
+    },
+    {
+        "index": 138,
+        "style": "Heading 3",
+        "text": "3.1.2. Researchers & Developers (Secondary Users)"
+    },
+    {
+        "index": 139,
+        "style": "Normal",
+        "text": "Role: Users who extend, modify, or build upon the system for research or development."
+    },
+    {
+        "index": 140,
+        "style": "Normal",
+        "text": "Characteristics:"
+    },
+    {
+        "index": 141,
+        "style": "List Bullet",
+        "text": "Demographics: Computer science students, machine learning researchers, accessibility technology deve..."
+    },
+    {
+        "index": 142,
+        "style": "List Bullet",
+        "text": "Technical Expertise: High. Familiar with Python, deep learning, and computer vision."
+    },
+    {
+        "index": 143,
+        "style": "List Bullet",
+        "text": "Frequency of Use: Periodic (during research, model retraining, dataset expansion)."
+    },
+    {
+        "index": 144,
+        "style": "Normal",
+        "text": "Key Privileges:"
+    },
+    {
+        "index": 145,
+        "style": "List Bullet",
+        "text": "Use data collection mode to record new training data for additional words."
+    },
+    {
+        "index": 146,
+        "style": "List Bullet",
+        "text": "Retrain the model with expanded datasets using the Jupyter notebook."
+    },
+    {
+        "index": 147,
+        "style": "List Bullet",
+        "text": "Modify preprocessing parameters and model architecture."
+    },
+    {
+        "index": 148,
+        "style": "List Bullet",
+        "text": "Use file-based prediction for batch processing of video files."
+    },
+    {
+        "index": 150,
+        "style": "Heading 2",
+        "text": "3.2. Hardware and Software Requirements"
+    },
+    {
+        "index": 151,
+        "style": "Heading 3",
+        "text": "3.2.1. Hardware Requirements"
+    },
+    {
+        "index": 152,
+        "style": "Normal",
+        "text": "Client-Side (User Machine)"
+    },
+    {
+        "index": 153,
+        "style": "List Bullet",
+        "text": "Processor: Intel Core i5 or equivalent (quad-core 2.0 GHz minimum). GPU recommended for training (NV..."
+    },
+    {
+        "index": 154,
+        "style": "List Bullet",
+        "text": "RAM: Minimum 8 GB (16 GB recommended for model training)."
+    },
+    {
+        "index": 155,
+        "style": "List Bullet",
+        "text": "Webcam: Built-in or external USB webcam with minimum 480p resolution (720p recommended)."
+    },
+    {
+        "index": 156,
+        "style": "List Bullet",
+        "text": "Storage: Minimum 5 GB free space (3 GB for dataset, 1 GB for model weights, 1 GB for dependencies)."
+    },
+    {
+        "index": 157,
+        "style": "List Bullet",
+        "text": "Display: Standard monitor for viewing the webcam feed and prediction results."
+    },
+    {
+        "index": 158,
+        "style": "Normal",
+        "text": "Training Environment (Optional)"
+    },
+    {
+        "index": 159,
+        "style": "List Bullet",
+        "text": "The training was performed on Kaggle using cloud GPU (NVIDIA Tesla P100 or T4)."
+    },
+    {
+        "index": 160,
+        "style": "List Bullet",
+        "text": "Local training requires an NVIDIA GPU with at least 4 GB VRAM and CUDA toolkit installed."
+    },
+    {
+        "index": 161,
+        "style": "Heading 3",
+        "text": "3.2.2. Software Requirements"
+    },
+    {
+        "index": 162,
+        "style": "Normal",
+        "text": "Development/Runtime Environment"
+    },
+    {
+        "index": 163,
+        "style": "List Bullet",
+        "text": "Operating System: Windows 10/11, macOS (Catalina or later), or Linux (Ubuntu 18.04+)."
+    },
+    {
+        "index": 164,
+        "style": "List Bullet",
+        "text": "Python: Version 3.11 or 3.12."
+    },
+    {
+        "index": 165,
+        "style": "List Bullet",
+        "text": "Code Editor: Visual Studio Code, Cursor IDE, or Jupyter Notebook (for training)."
+    },
+    {
+        "index": 166,
+        "style": "Heading 2",
+        "text": "3.3. Assumptions and Dependencies"
+    },
+    {
+        "index": 167,
+        "style": "Heading 3",
+        "text": "3.3.1. Assumptions"
+    },
+    {
+        "index": 168,
+        "style": "List Bullet",
+        "text": "Webcam Availability: It is assumed that the user's machine has a functioning webcam accessible by th..."
+    },
+    {
+        "index": 169,
+        "style": "List Bullet",
+        "text": "Frontal Face Orientation: The system assumes the user is facing the camera approximately frontally. ..."
+    },
+    {
+        "index": 170,
+        "style": "List Bullet",
+        "text": "Adequate Lighting: It is assumed that the user's face is reasonably well-lit. While the contrast enh..."
+    },
+    {
+        "index": 171,
+        "style": "List Bullet",
+        "text": "Single Speaker: The current implementation processes one face at a time (the first detected face). I..."
+    },
+    {
+        "index": 172,
+        "style": "List Bullet",
+        "text": "English Words Only: The system is trained exclusively on 13 English words. It assumes all spoken inp..."
+    },
+    {
+        "index": 173,
+        "style": "List Bullet",
+        "text": "Consistent Speaking Style: The system assumes a natural speaking pace and mouth movement. Exaggerate..."
+    },
+    {
+        "index": 174,
+        "style": "Heading 3",
+        "text": "3.3.2. Dependencies"
+    },
+    {
+        "index": 175,
+        "style": "List Bullet",
+        "text": "Pre-trained Facial Landmark Model: The system depends on a pre-trained 68-point facial landmark mode..."
+    },
+    {
+        "index": 176,
+        "style": "List Bullet",
+        "text": "Trained Neural Network Weights: The trained 3D CNN weight files must be present in the model directo..."
+    },
+    {
+        "index": 177,
+        "style": "List Bullet",
+        "text": "Webcam Interface: The webcam capture depends on the computer vision library interfacing with the sys..."
+    },
+    {
+        "index": 178,
+        "style": "List Bullet",
+        "text": "Package Compatibility: The project depends on specific versions of the deep learning framework, faci..."
+    },
+    {
+        "index": 179,
+        "style": "List Bullet",
+        "text": "GPU Drivers (Training Only): If retraining the model locally, the system depends on NVIDIA CUDA driv..."
+    },
+    {
+        "index": 181,
+        "style": "Heading 1",
+        "text": "4    SYSTEM DIAGRAMS"
+    },
+    {
+        "index": 182,
+        "style": "Heading 2",
+        "text": "4.1  MODEL ARCHITECTURE DIAGRAM"
+    },
+    {
+        "index": 183,
+        "style": "Heading 2",
+        "text": "4.2  DATA PIPELINE FLOWCHART"
+    },
+    {
+        "index": 184,
+        "style": "Heading 2",
+        "text": "4.3  USE CASE DIAGRAM"
+    },
+    {
+        "index": 185,
+        "style": "Heading 2",
+        "text": "4.4  SEQUENCE DIAGRAM"
+    },
+    {
+        "index": 186,
+        "style": "Heading 2",
+        "text": "4.5  ACTIVITY DIAGRAM"
+    },
+    {
+        "index": 187,
+        "style": "Heading 2",
+        "text": "4.6  DATA FLOW DIAGRAM"
+    },
+    {
+        "index": 189,
+        "style": "Heading 2",
+        "text": "4.1. Model Architecture Diagram"
+    },
+    {
+        "index": 190,
+        "style": "Normal",
+        "text": "A Model Architecture Diagram is a visual representation of the neural network structure, illustratin..."
+    },
+    {
+        "index": 191,
+        "style": "Normal",
+        "text": "The Computer Vision Lip Reading System uses a 3D Convolutional Neural Network (3D CNN) built with Te..."
+    },
+    {
+        "index": 193,
+        "style": "Normal",
+        "text": "Fig4.1: Model Architecture Diagram (3D CNN)"
+    },
+    {
+        "index": 195,
+        "style": "Heading 2",
+        "text": "4.2. Data Pipeline Flowchart"
+    },
+    {
+        "index": 196,
+        "style": "Normal",
+        "text": "A Data Pipeline Flowchart illustrates the end-to-end flow of data through a machine learning system ..."
+    },
+    {
+        "index": 197,
+        "style": "Normal",
+        "text": "The Computer Vision Lip Reading System pipeline consists of five major stages:"
+    },
+    {
+        "index": 199,
+        "style": "Normal",
+        "text": "Fig4.2: Data Pipeline Flowchart"
+    },
+    {
+        "index": 200,
+        "style": "Heading 2",
+        "text": "4.3. Use Case Diagram"
+    },
+    {
+        "index": 201,
+        "style": "Normal",
+        "text": "A use case diagram depicts the interactions between actors and the system, showcasing functionality ..."
+    },
+    {
+        "index": 202,
+        "style": "Normal",
+        "text": "Actors:"
+    },
+    {
+        "index": 203,
+        "style": "List Bullet",
+        "text": "Data Collector (Primary Actor): The person who records training data by speaking words into the webc..."
+    },
+    {
+        "index": 204,
+        "style": "List Bullet",
+        "text": "End User (Primary Actor): The person who uses the live prediction system."
+    },
+    {
+        "index": 205,
+        "style": "List Bullet",
+        "text": "Webcam Hardware (System Actor): Provides real-time video frames."
+    },
+    {
+        "index": 206,
+        "style": "List Bullet",
+        "text": "Facial Landmark Detector (System Actor): Provides facial landmark coordinates."
+    },
+    {
+        "index": 207,
+        "style": "List Bullet",
+        "text": "3D CNN Model (System Actor): Performs word classification."
+    },
+    {
+        "index": 208,
+        "style": "Normal",
+        "text": "Use Cases:"
+    },
+    {
+        "index": 209,
+        "style": "List Bullet",
+        "text": "Calibrate Lip Distance Threshold"
+    },
+    {
+        "index": 210,
+        "style": "List Bullet",
+        "text": "Collect Training Data for a Word"
+    },
+    {
+        "index": 211,
+        "style": "List Bullet",
+        "text": "Start Live Prediction Session"
+    },
+    {
+        "index": 212,
+        "style": "List Bullet",
+        "text": "Detect Face in Frame"
+    },
+    {
+        "index": 213,
+        "style": "List Bullet",
+        "text": "Extract Lip Region"
+    },
+    {
+        "index": 214,
+        "style": "List Bullet",
+        "text": "Detect Speaking Activity"
+    },
+    {
+        "index": 215,
+        "style": "List Bullet",
+        "text": "Capture & Preprocess Lip Frames"
+    },
+    {
+        "index": 216,
+        "style": "List Bullet",
+        "text": "Predict Spoken Word (automated)"
+    },
+    {
+        "index": 217,
+        "style": "List Bullet",
+        "text": "Display Predicted Word"
+    },
+    {
+        "index": 218,
+        "style": "List Bullet",
+        "text": "Run File-Based Prediction"
+    },
+    {
+        "index": 219,
+        "style": "List Bullet",
+        "text": "Save Output Video with Annotations"
+    },
+    {
+        "index": 220,
+        "style": "List Bullet",
+        "text": "Reset Prediction History"
+    },
+    {
+        "index": 221,
+        "style": "Normal",
+        "text": "[INSERT Fig4.3: Use Case Diagram HERE]"
+    },
+    {
+        "index": 222,
+        "style": "Normal",
+        "text": "Fig4.3: Use Case Diagram"
+    },
+    {
+        "index": 224,
+        "style": "Heading 2",
+        "text": "4.4. Sequence Diagram"
+    },
+    {
+        "index": 225,
+        "style": "Normal",
+        "text": "A sequence diagram shows the sequence of messages passed between objects over time during an interac..."
+    },
+    {
+        "index": 226,
+        "style": "Normal",
+        "text": "Live Prediction Flow Sequence:"
+    },
+    {
+        "index": 227,
+        "style": "Normal",
+        "text": "[INSERT Fig4.4: Sequence Diagram HERE]"
+    },
+    {
+        "index": 228,
+        "style": "Normal",
+        "text": "Fig4.4: Sequence Diagram"
+    },
+    {
+        "index": 229,
+        "style": "Heading 2",
+        "text": "4.5. Activity Diagram"
+    },
+    {
+        "index": 230,
+        "style": "Normal",
+        "text": "An activity diagram models the flow from one activity to another within the system."
+    },
+    {
+        "index": 231,
+        "style": "Normal",
+        "text": "Data Collection & Prediction Activity Flow:"
+    },
+    {
+        "index": 232,
+        "style": "Normal",
+        "text": "[INSERT Fig4.5: Activity Diagram HERE]"
+    },
+    {
+        "index": 233,
+        "style": "Normal",
+        "text": "Fig4.5: Activity Diagram"
+    },
+    {
+        "index": 234,
+        "style": "Heading 2",
+        "text": "4.6. Data Flow Diagram"
+    },
+    {
+        "index": 235,
+        "style": "Heading 3",
+        "text": "4.6.1. Context-Level-0 DFD"
+    },
+    {
+        "index": 236,
+        "style": "Normal",
+        "text": "The Context-Level-0 DFD shows the entire system as a single process:"
+    },
+    {
+        "index": 237,
+        "style": "List Bullet",
+        "text": "User provides: Word label (collection mode), Start/Stop commands"
+    },
+    {
+        "index": 238,
+        "style": "List Bullet",
+        "text": "Lip Reading System returns to User: Predicted word, Visual annotations on webcam feed"
+    },
+    {
+        "index": 239,
+        "style": "List Bullet",
+        "text": "Webcam Hardware provides: Raw video frames"
+    },
+    {
+        "index": 240,
+        "style": "List Bullet",
+        "text": "File System exchanges: Training data files (images, numerical arrays, video clips), Model weight fil..."
+    },
+    {
+        "index": 241,
+        "style": "Normal",
+        "text": "[INSERT Fig4.6.1: Context-Level-0 DFD HERE]"
+    },
+    {
+        "index": 242,
+        "style": "Heading 3",
+        "text": "4.6.2. Context-Level-1 DFD"
+    },
+    {
+        "index": 243,
+        "style": "Normal",
+        "text": "The Level-1 DFD breaks the system into major processes:"
+    },
+    {
+        "index": 244,
+        "style": "List Bullet",
+        "text": "Process 1: Face & Lip Detection \u2013 Receives raw frames, detects face using the facial landmark detect..."
+    },
+    {
+        "index": 245,
+        "style": "List Bullet",
+        "text": "Process 2: Lip Preprocessing \u2013 Applies color space conversion, contrast enhancement, smoothing, bila..."
+    },
+    {
+        "index": 246,
+        "style": "List Bullet",
+        "text": "Process 3: Speech Activity Detection \u2013 Monitors lip distance to determine talking/not-talking state,..."
+    },
+    {
+        "index": 247,
+        "style": "List Bullet",
+        "text": "Process 4: Frame Accumulation \u2013 Accumulates 22 preprocessed lip frames (including pre-speech buffer ..."
+    },
+    {
+        "index": 248,
+        "style": "List Bullet",
+        "text": "Process 5: Classification (Prediction Mode) \u2013 Feeds 22-frame tensor through the 3D CNN model, output..."
+    },
+    {
+        "index": 249,
+        "style": "List Bullet",
+        "text": "Process 6: Data Saving (Collection Mode) \u2013 Saves 22-frame sequences as structured files, images, and..."
+    },
+    {
+        "index": 250,
+        "style": "List Bullet",
+        "text": "Data Store: Dataset Directory \u2013 Stores labeled word folders with frame data. Model Directory \u2013 Store..."
+    },
+    {
+        "index": 251,
+        "style": "Normal",
+        "text": "[INSERT Fig4.6.2: Context-Level-1 DFD HERE]"
+    },
+    {
+        "index": 252,
+        "style": "Heading 1",
+        "text": "5    DATA DICTIONARY"
+    },
+    {
+        "index": 253,
+        "style": "Heading 2",
+        "text": "5.1  OVERVIEW"
+    },
+    {
+        "index": 254,
+        "style": "Heading 2",
+        "text": "5.2  DATA SCHEMA"
+    },
+    {
+        "index": 255,
+        "style": "Heading 2",
+        "text": "5.3  DATA INTEGRITY AND PROCESSING"
+    },
+    {
+        "index": 256,
+        "style": "Heading 2",
+        "text": "5.4  DATASET DESCRIPTION AND STATISTICS"
+    },
+    {
+        "index": 258,
+        "style": "Heading 2",
+        "text": "5.1. Overview"
+    },
+    {
+        "index": 259,
+        "style": "Normal",
+        "text": "The Computer Vision Lip Reading System stores and processes data in two forms: (1) the training data..."
+    },
+    {
+        "index": 260,
+        "style": "Heading 2",
+        "text": "5.2. Data Schema"
+    },
+    {
+        "index": 261,
+        "style": "Heading 3",
+        "text": "5.2.1. Collected Data Structure"
+    },
+    {
+        "index": 262,
+        "style": "Normal",
+        "text": "Each word sample is stored in a dedicated folder within the dataset directory, named by word label a..."
+    },
+    {
+        "index": 264,
+        "style": "Normal",
+        "text": "Total Dataset Statistics:"
+    },
+    {
+        "index": 265,
+        "style": "Heading 3",
+        "text": "5.2.2. Model Input Tensor"
+    },
+    {
+        "index": 266,
+        "style": "Normal",
+        "text": "The 3D CNN model expects input in the following tensor format:"
+    },
+    {
+        "index": 267,
+        "style": "Normal",
+        "text": "Full input shape: (batch_size, 22, 80, 112, 3)"
+    },
+    {
+        "index": 269,
+        "style": "Normal",
+        "text": "Label Encoding Mapping:"
+    },
+    {
+        "index": 270,
+        "style": "Heading 2",
+        "text": "5.3. Data Integrity and Processing"
+    },
+    {
+        "index": 271,
+        "style": "Normal",
+        "text": "Frame Count Consistency: Every word sample is guaranteed to contain exactly 22 frames. The data coll..."
+    },
+    {
+        "index": 272,
+        "style": "Normal",
+        "text": "Spatial Consistency: All lip frames are resized to exactly 112\u00d780 pixels using standard image resizi..."
+    },
+    {
+        "index": 273,
+        "style": "Normal",
+        "text": "Preprocessing Pipeline: Every frame undergoes the same preprocessing chain:"
+    },
+    {
+        "index": 274,
+        "style": "List Bullet",
+        "text": "LAB Color Space Conversion for luminance-chrominance separation"
+    },
+    {
+        "index": 275,
+        "style": "List Bullet",
+        "text": "CLAHE Contrast Enhancement (clip limit of 3.0, tile grid of 3\u00d73) on the luminance channel"
+    },
+    {
+        "index": 276,
+        "style": "List Bullet",
+        "text": "Conversion back to the original color space"
+    },
+    {
+        "index": 277,
+        "style": "List Bullet",
+        "text": "Gaussian Blur (7\u00d77 kernel) for initial noise reduction"
+    },
+    {
+        "index": 278,
+        "style": "List Bullet",
+        "text": "Bilateral Filtering for edge-preserving smoothing"
+    },
+    {
+        "index": 279,
+        "style": "List Bullet",
+        "text": "Sharpening via a custom convolution kernel"
+    },
+    {
+        "index": 280,
+        "style": "List Bullet",
+        "text": "Final Gaussian Blur (5\u00d75 kernel) for subtle smoothing"
+    },
+    {
+        "index": 281,
+        "style": "Normal",
+        "text": "Data Types: Raw frames are stored as lists of integers (0-255) in serialized format. For model input..."
+    },
+    {
+        "index": 282,
+        "style": "Normal",
+        "text": "Train/Test Split: The dataset is split 80% training / 20% validation using a stratified random split..."
+    },
+    {
+        "index": 283,
+        "style": "Heading 2",
+        "text": "5.4. Dataset Description and Statistics"
+    },
+    {
+        "index": 284,
+        "style": "Normal",
+        "text": "This section provides a comprehensive description of the dataset used for training and evaluating th..."
+    },
+    {
+        "index": 285,
+        "style": "Heading 3",
+        "text": "5.4.1. Dataset Overview"
+    },
+    {
+        "index": 286,
+        "style": "Normal",
+        "text": "The dataset consists of approximately 700 video clips of individual words being spoken, captured usi..."
+    },
+    {
+        "index": 287,
+        "style": "Normal",
+        "text": "The dataset comprises 13 distinct word classes, carefully selected to include a mix of common Englis..."
+    },
+    {
+        "index": 288,
+        "style": "Heading 3",
+        "text": "5.4.2. Per-Class Sample Distribution"
+    },
+    {
+        "index": 289,
+        "style": "Normal",
+        "text": "The following table presents the number of collected samples for each word class in the dataset. The..."
+    },
+    {
+        "index": 290,
+        "style": "Normal",
+        "text": "The approximate balance across classes (standard deviation of \u22483.2 samples) indicates that the datas..."
+    },
+    {
+        "index": 291,
+        "style": "Heading 3",
+        "text": "5.4.3. Dataset Characteristics"
+    },
+    {
+        "index": 292,
+        "style": "Normal",
+        "text": "The following table summarizes the key characteristics of the dataset:"
+    },
+    {
+        "index": 293,
+        "style": "Heading 3",
+        "text": "5.4.4. Data Collection Methodology"
+    },
+    {
+        "index": 294,
+        "style": "Normal",
+        "text": "The data collection process was designed to capture natural lip movements during speech while mainta..."
+    },
+    {
+        "index": 295,
+        "style": "Normal",
+        "text": "1. Subject Positioning:"
+    },
+    {
+        "index": 296,
+        "style": "Normal",
+        "text": "The speaker sits approximately 50-70 cm from the webcam, facing directly toward the camera with adeq..."
+    },
+    {
+        "index": 297,
+        "style": "Normal",
+        "text": "2. Lip Distance Calibration:"
+    },
+    {
+        "index": 298,
+        "style": "Normal",
+        "text": "Before each recording session, the system performs a calibration step. The speaker keeps their mouth..."
+    },
+    {
+        "index": 299,
+        "style": "Normal",
+        "text": "3. Word Recording:"
+    },
+    {
+        "index": 300,
+        "style": "Normal",
+        "text": "The speaker is prompted to speak a specific word. The system monitors the lip distance in real-time ..."
+    },
+    {
+        "index": 301,
+        "style": "Normal",
+        "text": "4. Frame Assembly:"
+    },
+    {
+        "index": 302,
+        "style": "Normal",
+        "text": "Each captured word is assembled into a fixed 22-frame sequence. This includes 4 pre-speech buffer fr..."
+    },
+    {
+        "index": 303,
+        "style": "Normal",
+        "text": "5. Preprocessing and Storage:"
+    },
+    {
+        "index": 304,
+        "style": "Normal",
+        "text": "Each of the 22 lip-region frames undergoes the standardized preprocessing pipeline (color space conv..."
+    },
+    {
+        "index": 305,
+        "style": "Normal",
+        "text": "6. Quality Control:"
+    },
+    {
+        "index": 306,
+        "style": "Normal",
+        "text": "Each recorded sample is visually verified through the saved video clip. Samples with poor face detec..."
+    },
+    {
+        "index": 308,
+        "style": "Heading 1",
+        "text": "6    RESULT, DISCUSSION AND CONCLUSION"
+    },
+    {
+        "index": 309,
+        "style": "Heading 2",
+        "text": "6.1  RESULT"
+    },
+    {
+        "index": 310,
+        "style": "Heading 2",
+        "text": "6.2  CONCLUSION"
+    },
+    {
+        "index": 312,
+        "style": "Heading 2",
+        "text": "6.1. Result"
+    },
+    {
+        "index": 313,
+        "style": "Normal",
+        "text": "The Computer Vision Lip Reading System has been successfully developed and tested, demonstrating the..."
+    },
+    {
+        "index": 314,
+        "style": "Normal",
+        "text": "1. Custom Dataset Creation:"
+    },
+    {
+        "index": 315,
+        "style": "Normal",
+        "text": "The data collection pipeline successfully captured approximately 700 video clips across 13 word clas..."
+    },
+    {
+        "index": 316,
+        "style": "Normal",
+        "text": "2. Model Training Performance:"
+    },
+    {
+        "index": 317,
+        "style": "Normal",
+        "text": "The 3D CNN model (3 convolutional layers with L2 regularization, 3 fully connected layers with dropo..."
+    },
+    {
+        "index": 318,
+        "style": "List Bullet",
+        "text": "Training Accuracy: 95.7%"
+    },
+    {
+        "index": 319,
+        "style": "List Bullet",
+        "text": "Validation Accuracy: 98.5%"
+    },
+    {
+        "index": 320,
+        "style": "List Bullet",
+        "text": "The validation accuracy exceeding training accuracy suggests effective regularization and a well-gen..."
+    },
+    {
+        "index": 321,
+        "style": "Normal",
+        "text": "3. Real-Time Live Prediction:"
+    },
+    {
+        "index": 322,
+        "style": "Normal",
+        "text": "The live prediction module successfully performs real-time word prediction from a webcam feed. The s..."
+    },
+    {
+        "index": 323,
+        "style": "Normal",
+        "text": "4. File-Based Prediction:"
+    },
+    {
+        "index": 324,
+        "style": "Normal",
+        "text": "The file-based prediction module successfully processes pre-recorded video files, performs frame-by-..."
+    },
+    {
+        "index": 325,
+        "style": "Normal",
+        "text": "[INSERT Screenshots \u2013 Data Collection Mode, Live Prediction Mode, Sample Lip Frames HERE]"
+    },
+    {
+        "index": 327,
+        "style": "Heading 2",
+        "text": "6.2. Conclusion"
+    },
+    {
+        "index": 328,
+        "style": "Normal",
+        "text": "This project successfully demonstrates that visual-only lip reading using 3D Convolutional Neural Ne..."
+    },
+    {
+        "index": 329,
+        "style": "Normal",
+        "text": "The project validates several key technical achievements:"
+    },
+    {
+        "index": 330,
+        "style": "List Bullet",
+        "text": "A custom-built data collection pipeline can efficiently generate high-quality lip reading training d..."
+    },
+    {
+        "index": 331,
+        "style": "List Bullet",
+        "text": "3D CNNs are effective at capturing spatiotemporal features from lip movement sequences, enabling acc..."
+    },
+    {
+        "index": 332,
+        "style": "List Bullet",
+        "text": "The multi-stage preprocessing pipeline (color space conversion, contrast enhancement, smoothing, bil..."
+    },
+    {
+        "index": 333,
+        "style": "List Bullet",
+        "text": "The complete pipeline from data collection \u2192 training \u2192 real-time inference can run on standard cons..."
+    },
+    {
+        "index": 334,
+        "style": "Normal",
+        "text": "Future enhancements planned for subsequent iterations include:"
+    },
+    {
+        "index": 335,
+        "style": "List Bullet",
+        "text": "Expanding the vocabulary beyond 13 words to support a larger set of common English words."
+    },
+    {
+        "index": 336,
+        "style": "List Bullet",
+        "text": "Implementing sentence-level lip reading by combining the word-level model with a language model for ..."
+    },
+    {
+        "index": 337,
+        "style": "List Bullet",
+        "text": "Adding speaker-independent training by collecting data from multiple speakers to improve generalizat..."
+    },
+    {
+        "index": 338,
+        "style": "List Bullet",
+        "text": "Implementing a graphical user interface (GUI) for easier usage by non-technical users."
+    },
+    {
+        "index": 339,
+        "style": "List Bullet",
+        "text": "Exploring transfer learning from larger pre-trained video models (e.g., I3D, SlowFast) to improve ac..."
+    },
+    {
+        "index": 340,
+        "style": "List Bullet",
+        "text": "Deploying as a web application or mobile app for broader accessibility."
+    },
+    {
+        "index": 341,
+        "style": "List Bullet",
+        "text": "Integrating with assistive technology frameworks for hearing-impaired users."
+    },
+    {
+        "index": 342,
+        "style": "Normal",
+        "text": "By bridging the gap between audio-dependent speech recognition and visual-only lip reading, this pro..."
+    },
+    {
+        "index": 344,
+        "style": "Heading 1",
+        "text": "7    BIBLIOGRAPHY"
+    },
+    {
+        "index": 345,
+        "style": "Heading 2",
+        "text": "7.1  REFERENCES"
+    },
+    {
+        "index": 347,
+        "style": "Heading 2",
+        "text": "7.1. References"
+    },
+    {
+        "index": 348,
+        "style": "Heading 3",
+        "text": "7.1.1. Academic Papers & Journals"
+    },
+    {
+        "index": 349,
+        "style": "Normal",
+        "text": "[LipNet] Y. M. Assael, B. Shillingford, S. Whiteson, and N. de Freitas, \"LipNet: End-to-End Sentence..."
+    },
+    {
+        "index": 350,
+        "style": "Normal",
+        "text": "[Lip Reading in the Wild] J. S. Chung, A. Senior, O. Vinyals, and A. Zisserman, \"Lip Reading Sentenc..."
+    },
+    {
+        "index": 351,
+        "style": "Normal",
+        "text": "[C3D] D. Tran, L. Bourdev, R. Fergus, L. Torresani, and M. Paluri, \"Learning Spatiotemporal Features..."
+    },
+    {
+        "index": 352,
+        "style": "Normal",
+        "text": "[Facial Landmarks] V. Kazemi and J. Sullivan, \"One Millisecond Face Alignment with an Ensemble of Re..."
+    },
+    {
+        "index": 353,
+        "style": "Normal",
+        "text": "[Audio-Visual SR] G. Potamianos, C. Neti, G. Gravier, A. Garg, and A. W. Senior, \"Recent Advances in..."
+    },
+    {
+        "index": 354,
+        "style": "Normal",
+        "text": "[McGurk Effect] H. McGurk and J. MacDonald, \"Hearing lips and seeing voices,\" Nature, vol. 264, no. ..."
+    },
+    {
+        "index": 355,
+        "style": "Normal",
+        "text": "[GRID Corpus] M. Cooke, J. Barker, S. Cunningham, and X. Shao, \"An audio-visual corpus for speech pe..."
+    },
+    {
+        "index": 356,
+        "style": "Normal",
+        "text": "[AlexNet] A. Krizhevsky, I. Sutskever, and G. E. Hinton, \"ImageNet Classification with Deep Convolut..."
+    },
+    {
+        "index": 357,
+        "style": "Normal",
+        "text": "[WHO Hearing Loss] World Health Organization, \"World Report on Hearing,\" Geneva: WHO, 2021. (Evidenc..."
+    },
+    {
+        "index": 358,
+        "style": "Heading 3",
+        "text": "7.1.2. Technical Documentation"
+    },
+    {
+        "index": 359,
+        "style": "Normal",
+        "text": "TensorFlow Documentation."
+    },
+    {
+        "index": 360,
+        "style": "Normal",
+        "text": "Keras Documentation."
+    },
+    {
+        "index": 361,
+        "style": "Normal",
+        "text": "OpenCV Documentation."
+    },
+    {
+        "index": 362,
+        "style": "Normal",
+        "text": "dlib Documentation."
+    },
+    {
+        "index": 363,
+        "style": "Heading 3",
+        "text": "7.1.3. Web Resources & Libraries"
+    },
+    {
+        "index": 364,
+        "style": "Normal",
+        "text": "dlib \u2013 Face Landmark Detection. [Online]. Available: http://dlib.net/. (C++ toolkit with Python bind..."
+    },
+    {
+        "index": 365,
+        "style": "Normal",
+        "text": "dlib Shape Predictor 68 Landmarks. [Online]. Available: https://github.com/davisking/dlib-models. (P..."
+    },
+    {
+        "index": 366,
+        "style": "Normal",
+        "text": "OpenCV \u2013 Open Source Computer Vision Library. [Online]. Available: https://opencv.org/. (Industry-st..."
+    },
+    {
+        "index": 367,
+        "style": "Normal",
+        "text": "Kaggle Lip Reading Dataset. [Online]. Available: https://www.kaggle.com/datasets/allenye66/best-lip-..."
+    },
+    {
+        "index": 368,
+        "style": "Normal",
+        "text": "imageio \u2013 Python Library for Image/Video I/O. [Online]. Available: https://imageio.readthedocs.io/. ..."
+    }
+]
